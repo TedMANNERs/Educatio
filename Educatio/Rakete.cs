@@ -10,16 +10,17 @@ namespace Educatio
 {
     public class Rakete : INotifyPropertyChanged
     {
+        private int _beschleunigung;
         private Vector _beschleunigungsBewegung;
         private string _bild;
         private int _bildNummer = 1;
         private int _blickRichtungsWinkel;
         private int _flugRichtungsWinkel;
-        private int _beschleunigung;
+        private int _positionsWinkel;
+        private Vector _raumBewegung;
         private int _treibstoffMenge;
         private double _x;
         private double _y;
-        private Vector _raumBewegung;
 
         public Rakete(double x, double y)
         {
@@ -87,7 +88,7 @@ namespace Educatio
             get { return _raumBewegung; }
             set
             {
-                _raumBewegung = value; 
+                _raumBewegung = value;
                 OnPropertyChanged();
             }
         }
@@ -122,6 +123,18 @@ namespace Educatio
             }
         }
 
+        public int DrehBeschleunigung { get; set; }
+
+        public int PositionsWinkel
+        {
+            get { return _positionsWinkel; }
+            set
+            {
+                _positionsWinkel = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Loop()
@@ -142,6 +155,7 @@ namespace Educatio
                     _bildNummer++;
                 }
 
+                BlickRichtungsWinkel += DrehBeschleunigung;
                 BeschleunigungsBewegung = VektorAusLängeUndWinkel(Beschleunigung, BlickRichtungsWinkel);
 
                 Vector xAchse = VektorAusLängeUndWinkel(1, 0);
@@ -150,7 +164,9 @@ namespace Educatio
                 BewegeInRichtung(BeschleunigungsBewegung.Length, BlickRichtungsWinkel);
                 RaumBewegung = Vector.Add(RaumBewegung, BeschleunigungsBewegung);
 
-                Thread.Sleep(50);
+                PositionsWinkel = (int)Vector.AngleBetween(new Vector(X, Y), xAchse);
+
+                Thread.Sleep(30);
             }
         }
 
@@ -163,20 +179,19 @@ namespace Educatio
             return new Vector(x, y);
         }
 
-        public void Dgedrückt()
+        public void Wgedrückt()
         {
-            if (TreibstoffMenge > 0)
+            if (TreibstoffMenge > 0 && Beschleunigung < 20)
             {
-                BlickRichtungsWinkel += 10;
-                TreibstoffMenge--;
+                Beschleunigung++;
             }
         }
 
         public void Agedrückt()
         {
-            if (TreibstoffMenge > 0)
+            if (TreibstoffMenge > 0 && DrehBeschleunigung >= -10)
             {
-                BlickRichtungsWinkel -= 10;
+                DrehBeschleunigung--;
                 TreibstoffMenge--;
             }
         }
@@ -189,11 +204,12 @@ namespace Educatio
             }
         }
 
-        public void Wgedrückt()
+        public void Dgedrückt()
         {
-            if (TreibstoffMenge > 0 && Beschleunigung < 20)
+            if (TreibstoffMenge > 0 && DrehBeschleunigung <= 10)
             {
-                Beschleunigung++;
+                DrehBeschleunigung++;
+                TreibstoffMenge--;
             }
         }
 
@@ -203,8 +219,14 @@ namespace Educatio
             RaumBewegung = new Vector();
             TreibstoffMenge = TankGrösse;
             BlickRichtungsWinkel = 0;
+            DrehBeschleunigung = 0;
             X = 200;
             Y = 200;
+        }
+
+        public void Tgedrückt()
+        {
+            DrehBeschleunigung = 0;
         }
 
         private static int BegrenzeWinkel(int winkel)

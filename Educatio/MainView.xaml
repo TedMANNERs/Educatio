@@ -45,9 +45,21 @@
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Height="2" Fill=" Yellow" Width="{Binding Spielfeld.Rakete.BeschleunigungsBewegung.Length, Converter={StaticResource VektorConverter}}"
-                   Canvas.Top="50" Canvas.Left="50">
+                   Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="1" Fill="White" Width="50"
+                   Canvas.Bottom="50" Canvas.Left="50">
+            <Rectangle.RenderTransform>
+                <RotateTransform Angle="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle Height="1" Fill="Orange" Width="50"
+                   Canvas.Bottom="50" Canvas.Left="50">
+            <Rectangle.RenderTransform>
+                <RotateTransform Angle="{Binding Spielfeld.Rakete.PositionsWinkel}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
 

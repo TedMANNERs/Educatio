@@ -40,6 +40,9 @@ namespace Educatio
                 if (Keyboard.IsKeyDown(Key.R))
                     Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Rgedrückt);
 
+                if (Keyboard.IsKeyDown(Key.T))
+                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Tgedrückt);
+
                 Thread.Sleep(20);
             }
         }

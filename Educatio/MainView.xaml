@@ -1,0 +1,45 @@
+﻿<Window x:Class="Educatio.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:educatio="clr-namespace:Educatio" Background="Black"
+        Title="Educatio" Height="500" Width="825" Closed="Window_Closed">
+    <Window.DataContext>
+        <educatio:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <educatio:TreibstoffConverter x:Key="TreibstoffConverter"/>
+    </Window.Resources>
+    <Canvas>
+        <Canvas.Background>
+            <ImageBrush ImageSource="Resources/Images/weltraum.jpg" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,1920,1010"/>
+        </Canvas.Background>
+        <Canvas.Triggers>
+            <EventTrigger RoutedEvent="Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <RectAnimation Storyboard.TargetProperty="Background.Viewport"
+                                   To="-1920,0,1920,1010" Duration="0:0:5" 
+                                   RepeatBehavior="Forever"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Canvas.Triggers>
+
+        <Canvas Canvas.Left="{Binding Spielfeld.Rakete.X}" Canvas.Bottom="{Binding Spielfeld.Rakete.Y}">
+            <Rectangle Height="5" Fill="Red" Width="{Binding Spielfeld.Rakete.TankGrösse, Converter={StaticResource TreibstoffConverter}}"/>
+            <Rectangle Height="5" Fill="Green" Width="{Binding Spielfeld.Rakete.TreibstoffMenge, Converter={StaticResource TreibstoffConverter}}"/>
+            <Image Source="{Binding Spielfeld.Rakete.Bild}" Height="50" Canvas.Top="5">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}" CenterX="45" CenterY="25"/>
+                </Image.RenderTransform>
+                
+            </Image>
+        </Canvas>
+        
+        <Label Content="{Binding Spielfeld.Rakete.X}" ContentStringFormat="X {0}" Foreground="White"/>
+        <Label Content="{Binding Spielfeld.Rakete.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
+        <Label Content="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}" ContentStringFormat="BlickWinkel {0}" Foreground="White" Canvas.Top="40"/>
+        <Label Content="{Binding Spielfeld.Rakete.FlugRichtungsWinkel}" ContentStringFormat="FlugWinkel {0}" Foreground="White" Canvas.Top="60"/>
+        <Label Content="{Binding Spielfeld.Rakete.TreibstoffMenge}" ContentStringFormat="TreibstoffMenge {0}" Foreground="White" Canvas.Top="80"/>
+    </Canvas>
+</Window>

@@ -57,6 +57,7 @@
     <Compile Include="Rakete.cs" />
     <Compile Include="Spielfeld.cs" />
     <Compile Include="TreibstoffConverter.cs" />
+    <Compile Include="VektorConverter.cs" />
     <Page Include="MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,9 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\rakete3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\rakete4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,23 +3,25 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Educatio.Annotations;
 
 namespace Educatio
 {
     public class Rakete : INotifyPropertyChanged
     {
-        private int _beschleunigung;
-        private int _flugRichtungsWinkel;
-        private int _geschwindigkeit;
-        private int _blickRichtungsWinkel;
-        private int _treibstoffMenge;
-        private int _x;
-        private int _y;
-        private int _bildNummer = 1;
+        private Vector _beschleunigungsBewegung;
         private string _bild;
+        private int _bildNummer = 1;
+        private int _blickRichtungsWinkel;
+        private int _flugRichtungsWinkel;
+        private int _beschleunigung;
+        private int _treibstoffMenge;
+        private double _x;
+        private double _y;
+        private Vector _raumBewegung;
 
-        public Rakete(int x, int y)
+        public Rakete(double x, double y)
         {
             _x = x;
             _y = y;
@@ -35,7 +37,7 @@ namespace Educatio
             get { return _bild; }
             set
             {
-                _bild = value; 
+                _bild = value;
                 OnPropertyChanged();
             }
         }
@@ -50,22 +52,22 @@ namespace Educatio
             }
         }
 
+        public Vector BeschleunigungsBewegung
+        {
+            get { return _beschleunigungsBewegung; }
+            set
+            {
+                _beschleunigungsBewegung = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int Beschleunigung
         {
             get { return _beschleunigung; }
             set
             {
-                _beschleunigung = value < 0 ? 0 : value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int Geschwindigkeit
-        {
-            get { return _geschwindigkeit; }
-            set
-            {
-                _geschwindigkeit = value;
+                _beschleunigung = value;
                 OnPropertyChanged();
             }
         }
@@ -75,14 +77,22 @@ namespace Educatio
             get { return _blickRichtungsWinkel; }
             set
             {
-                if (TreibstoffMenge <= 0)
-                    return;
                 _blickRichtungsWinkel = BegrenzeWinkel(value);
                 OnPropertyChanged();
             }
         }
 
-        public int X
+        public Vector RaumBewegung
+        {
+            get { return _raumBewegung; }
+            set
+            {
+                _raumBewegung = value; 
+                OnPropertyChanged();
+            }
+        }
+
+        public double X
         {
             get { return _x; }
             set
@@ -92,7 +102,7 @@ namespace Educatio
             }
         }
 
-        public int Y
+        public double Y
         {
             get { return _y; }
             set
@@ -118,10 +128,9 @@ namespace Educatio
         {
             while (MainViewModel.IsRunning)
             {
-                if (TreibstoffMenge < 0)
+                if (TreibstoffMenge <= 0 || BeschleunigungsBewegung.Length <= 0)
                 {
                     Bild = "Resources/Images/rakete3.png";
-                    GeheVorwärts(10);
                 }
                 else
                 {
@@ -129,12 +138,73 @@ namespace Educatio
                     {
                         _bildNummer = 1;
                     }
-                    Bild = "Resources/Images/rakete" + _bildNummer +".png";
+                    Bild = "Resources/Images/rakete" + _bildNummer + ".png";
                     _bildNummer++;
                 }
 
-                Thread.Sleep(20);
+                BeschleunigungsBewegung = VektorAusLängeUndWinkel(Beschleunigung, BlickRichtungsWinkel);
+
+                Vector xAchse = VektorAusLängeUndWinkel(1, 0);
+                FlugRichtungsWinkel = (int)Vector.AngleBetween(RaumBewegung, xAchse);
+                BewegeInRichtung(RaumBewegung.Length, -FlugRichtungsWinkel);
+                BewegeInRichtung(BeschleunigungsBewegung.Length, BlickRichtungsWinkel);
+                RaumBewegung = Vector.Add(RaumBewegung, BeschleunigungsBewegung);
+
+                Thread.Sleep(50);
             }
+        }
+
+        private Vector VektorAusLängeUndWinkel(double länge, int winkel)
+        {
+            double cos = Math.Cos(winkel * (Math.PI / 180));
+            double sin = Math.Sin(winkel * (Math.PI / 180));
+            double x = (länge / 10.0) * cos;
+            double y = (länge / 10.0) * sin;
+            return new Vector(x, y);
+        }
+
+        public void Dgedrückt()
+        {
+            if (TreibstoffMenge > 0)
+            {
+                BlickRichtungsWinkel += 10;
+                TreibstoffMenge--;
+            }
+        }
+
+        public void Agedrückt()
+        {
+            if (TreibstoffMenge > 0)
+            {
+                BlickRichtungsWinkel -= 10;
+                TreibstoffMenge--;
+            }
+        }
+
+        public void Sgedrückt()
+        {
+            if (Beschleunigung > 0)
+            {
+                Beschleunigung--;
+            }
+        }
+
+        public void Wgedrückt()
+        {
+            if (TreibstoffMenge > 0 && Beschleunigung < 20)
+            {
+                Beschleunigung++;
+            }
+        }
+
+        public void Rgedrückt()
+        {
+            Beschleunigung = 0;
+            RaumBewegung = new Vector();
+            TreibstoffMenge = TankGrösse;
+            BlickRichtungsWinkel = 0;
+            X = 200;
+            Y = 200;
         }
 
         private static int BegrenzeWinkel(int winkel)
@@ -146,20 +216,12 @@ namespace Educatio
             return winkel;
         }
 
-        public void GeheVorwärts(int strecke)
+        public void BewegeInRichtung(double strecke, int winkel)
         {
-            double cos = Math.Cos(BlickRichtungsWinkel * (Math.PI / 180));
-            X += (int)(strecke * cos);
-            double sin = Math.Sin(BlickRichtungsWinkel * (Math.PI / 180));
-            Y -= (int)(strecke * sin);
-        }
-
-        public void GeheVorwärtsRealistisch()
-        {
-            double cos = Math.Cos(FlugRichtungsWinkel * (Math.PI / 180));
-            X += (int)(Geschwindigkeit * cos);
-            double sin = Math.Sin(FlugRichtungsWinkel * (Math.PI / 180));
-            Y -= (int)(Geschwindigkeit * sin);
+            double cos = Math.Cos(winkel * (Math.PI / 180));
+            X += strecke * cos;
+            double sin = Math.Sin(winkel * (Math.PI / 180));
+            Y -= strecke * sin;
         }
 
         [NotifyPropertyChangedInvocator]

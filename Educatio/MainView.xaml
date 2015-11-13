@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance local:MainViewModelDesignData, IsDesignTimeCreatable=True}"
-        Title="Educatio" Height="500" Width="825" Closed="Window_Closed">
+        Title="Educatio" Height="500" Width="825" Closed="Window_Closed" Name="MainWindow">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>
@@ -29,6 +29,28 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Canvas.Triggers>
+        <ItemsControl ItemsSource="{Binding Universe.Meteoroids}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas Height="{Binding ElementName=MainWindow, Path=Height}" Width="{Binding ElementName=MainWindow, Path=Width}"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Sprite}" Height="50">
+                        <Image.RenderTransform>
+                            <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="29" CenterY="25"/>
+                        </Image.RenderTransform>
+                    </Image>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Canvas.Left" Value="{Binding X}" />
+                    <Setter Property="Canvas.Bottom" Value="{Binding Y}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
         
         <Canvas Canvas.Left="{Binding Universe.Rocket.X}" Canvas.Bottom="{Binding Universe.Rocket.Y}">
             <Rectangle Height="5" Fill="Red" Width="{Binding Universe.Rocket.FuelTankSize, Converter={StaticResource FuelConverter}}"/>

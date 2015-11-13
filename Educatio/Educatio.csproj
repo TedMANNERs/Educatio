@@ -53,13 +53,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AngleUtils.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="KeyboardListener.cs" />
     <Compile Include="MainViewModelDesignData.cs" />
+    <Compile Include="Meteoroid.cs" />
     <Compile Include="Rocket.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="FuelConverter.cs" />
     <Compile Include="VectorConverter.cs" />
+    <Compile Include="VectorUtils.cs" />
     <Page Include="MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,6 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\rocket3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\asteroid.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,9 +2,9 @@ using System.Windows.Input;
 
 namespace Educatio
 {
-    public class GameArea
+    public class Universe
     {
-        public GameArea(KeyboardListener keyboardListener)
+        public Universe(KeyboardListener keyboardListener)
         {
             KeyboardListener = keyboardListener;
             Rocket = new Rocket(200, 200);
@@ -17,6 +17,18 @@ namespace Educatio
             KeyboardListener.Subscribers.Add(Key.R, Rocket.PressedR);
             KeyboardListener.Subscribers.Add(Key.T, Rocket.PressedT);
             KeyboardListener.Start();
+        }
+
+        public Universe()
+        {
+            Rocket = new Rocket(200, 200);
+            Rocket.FuelTankSize = 500;
+            Rocket.RemainingFuel = 500;
+        }
+
+        private void Loop()
+        {
+            
         }
 
         public Rocket Rocket { get; set; }

@@ -18,7 +18,7 @@ namespace Educatio
         {
             MainViewModel.IsRunning = false;
             MainViewModel mainViewModel = (MainViewModel)DataContext;
-            mainViewModel.GameArea.KeyboardListener.Stop();
+            mainViewModel.Universe.KeyboardListener.Stop();
         }
     }
 }

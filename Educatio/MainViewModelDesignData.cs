@@ -1,12 +1,12 @@
 namespace Educatio
 {
-    public class MainViewModel
+    public class MainViewModelDesignData
     {
         public static bool IsRunning = true;
 
-        public MainViewModel()
+        public MainViewModelDesignData()
         {
-            Universe = new Universe(new KeyboardListener());
+            Universe = new Universe();
         }
 
         public Universe Universe { get; set; }

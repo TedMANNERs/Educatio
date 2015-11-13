@@ -55,8 +55,9 @@
     </ApplicationDefinition>
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="KeyboardListener.cs" />
+    <Compile Include="MainViewModelDesignData.cs" />
     <Compile Include="Rocket.cs" />
-    <Compile Include="GameArea.cs" />
+    <Compile Include="Universe.cs" />
     <Compile Include="FuelConverter.cs" />
     <Compile Include="VectorConverter.cs" />
     <Page Include="MainView.xaml">

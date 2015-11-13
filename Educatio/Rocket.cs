@@ -10,7 +10,7 @@ namespace Educatio
 {
     public class Rocket : INotifyPropertyChanged
     {
-        private int _acceleration;
+        private double _acceleration;
         private Vector _accelerationMovement;
         private int _flightDirectionAngle;
         private int _imageId = 1;
@@ -48,7 +48,7 @@ namespace Educatio
             get { return _flightDirectionAngle; }
             set
             {
-                _flightDirectionAngle = LimitAngle(value);
+                _flightDirectionAngle = AngleUtils.LimitAngle(value);
                 OnPropertyChanged();
             }
         }
@@ -63,7 +63,7 @@ namespace Educatio
             }
         }
 
-        public int Acceleration
+        public double Acceleration
         {
             get { return _acceleration; }
             set
@@ -78,7 +78,7 @@ namespace Educatio
             get { return _viewDirectionAngle; }
             set
             {
-                _viewDirectionAngle = LimitAngle(value);
+                _viewDirectionAngle = AngleUtils.LimitAngle(value);
                 OnPropertyChanged();
             }
         }
@@ -156,9 +156,9 @@ namespace Educatio
                 }
 
                 ViewDirectionAngle += RotateAcceleration;
-                AccelerationMovement = GetVector(Acceleration, ViewDirectionAngle);
+                AccelerationMovement = VectorUtils.GetVector(Acceleration, ViewDirectionAngle);
 
-                Vector xAxis = GetVector(1, 0);
+                Vector xAxis = VectorUtils.GetVector(1, 0);
                 PositionAngle = (int)Vector.AngleBetween(new Vector(X, Y), xAxis);
                 FlightDirectionAngle = 360 - (int)Vector.AngleBetween(SpaceMovement, xAxis);
 
@@ -171,20 +171,11 @@ namespace Educatio
             }
         }
 
-        private Vector GetVector(double length, int angle)
-        {
-            double cos = Math.Cos(angle * (Math.PI / 180));
-            double sin = Math.Sin(angle * (Math.PI / 180));
-            double x = (length / 10.0) * cos;
-            double y = (length / 10.0) * sin;
-            return new Vector(x, y);
-        }
-
         public void PressedW()
         {
             if (RemainingFuel > 0 && Acceleration < 20)
             {
-                Acceleration++;
+                Acceleration += 0.1;
             }
         }
 
@@ -201,7 +192,11 @@ namespace Educatio
         {
             if (Acceleration > 0)
             {
-                Acceleration--;
+                Acceleration -= 0.5;
+            }
+            else
+            {
+                Acceleration = 0;
             }
         }
 
@@ -229,15 +224,6 @@ namespace Educatio
         {
             RotateAcceleration = 0;
             Acceleration = 0;
-        }
-
-        private static int LimitAngle(int angle)
-        {
-            if (angle < 0)
-                return 360 + angle;
-            if (angle > 360)
-                return angle - 360;
-            return angle;
         }
 
         public void MoveInDirection(double length, int angle)

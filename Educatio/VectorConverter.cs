@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace Educatio
 {
-    public class VektorConverter : IValueConverter
+    public class VectorConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

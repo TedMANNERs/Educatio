@@ -26,22 +26,22 @@ namespace Educatio
             while (MainViewModel.IsRunning)
             {
                 if (Keyboard.IsKeyDown(Key.W))
-                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Wgedrückt);
+                    Dispatcher.Invoke(_mainViewModel.GameArea.Rocket.PressedW);
 
                 if (Keyboard.IsKeyDown(Key.S))
-                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Sgedrückt);
+                    Dispatcher.Invoke(_mainViewModel.GameArea.Rocket.PressedS);
 
                 if (Keyboard.IsKeyDown(Key.A))
-                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Agedrückt);
+                    Dispatcher.Invoke(_mainViewModel.GameArea.Rocket.PressedA);
 
                 if (Keyboard.IsKeyDown(Key.D))
-                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Dgedrückt);
+                    Dispatcher.Invoke(_mainViewModel.GameArea.Rocket.PressedD);
 
                 if (Keyboard.IsKeyDown(Key.R))
-                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Rgedrückt);
+                    Dispatcher.Invoke(_mainViewModel.GameArea.Rocket.PressedR);
 
                 if (Keyboard.IsKeyDown(Key.T))
-                    Dispatcher.Invoke(_mainViewModel.Spielfeld.Rakete.Tgedrückt);
+                    Dispatcher.Invoke(_mainViewModel.GameArea.Rocket.PressedT);
 
                 Thread.Sleep(20);
             }

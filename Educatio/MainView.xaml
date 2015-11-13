@@ -7,12 +7,12 @@
         <educatio:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <educatio:TreibstoffConverter x:Key="TreibstoffConverter"/>
-        <educatio:VektorConverter x:Key="VektorConverter" />
+        <educatio:FuelConverter x:Key="FuelConverter"/>
+        <educatio:VectorConverter x:Key="VectorConverter" />
     </Window.Resources>
     <Canvas>
         <Canvas.Background>
-            <ImageBrush ImageSource="Resources/Images/weltraum.jpg" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,1920,1010"/>
+            <ImageBrush ImageSource="Resources/Images/space.jpg" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,1920,1010"/>
         </Canvas.Background>
         <Canvas.Triggers>
             <EventTrigger RoutedEvent="Loaded">
@@ -26,49 +26,49 @@
             </EventTrigger>
         </Canvas.Triggers>
 
-        <Canvas Canvas.Left="{Binding Spielfeld.Rakete.X}" Canvas.Bottom="{Binding Spielfeld.Rakete.Y}">
-            <Rectangle Height="5" Fill="Red" Width="{Binding Spielfeld.Rakete.TankGrösse, Converter={StaticResource TreibstoffConverter}}"/>
-            <Rectangle Height="5" Fill="Green" Width="{Binding Spielfeld.Rakete.TreibstoffMenge, Converter={StaticResource TreibstoffConverter}}"/>
-            <Image Source="{Binding Spielfeld.Rakete.Bild}" Height="50" Canvas.Top="5">
+        <Canvas Canvas.Left="{Binding GameArea.Rocket.X}" Canvas.Bottom="{Binding GameArea.Rocket.Y}">
+            <Rectangle Height="5" Fill="Red" Width="{Binding GameArea.Rocket.FuelTankSize, Converter={StaticResource FuelConverter}}"/>
+            <Rectangle Height="5" Fill="Green" Width="{Binding GameArea.Rocket.RemainingFuel, Converter={StaticResource FuelConverter}}"/>
+            <Image Source="{Binding GameArea.Rocket.Sprite}" Height="50" Canvas.Top="5">
                 <Image.RenderTransform>
-                    <RotateTransform Angle="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}" CenterX="45" CenterY="25"/>
+                    <RotateTransform Angle="{Binding GameArea.Rocket.ViewDirectionAngle}" CenterX="45" CenterY="25"/>
                 </Image.RenderTransform>
                 
             </Image>
         </Canvas>
         <Rectangle Height="100" Width="1" Fill="LightGray" Canvas.Bottom="0" Canvas.Left="50" />
         <Rectangle Height="1" Width="100" Fill="LightGray" Canvas.Bottom="50" />
-        <Rectangle Height="2" Fill="Red" Width="{Binding Spielfeld.Rakete.RaumBewegung.Length, Converter={StaticResource VektorConverter}}" 
+        <Rectangle Height="2" Fill="Red" Width="{Binding GameArea.Rocket.SpaceMovement.Length, Converter={StaticResource VectorConverter}}" 
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Spielfeld.Rakete.FlugRichtungsWinkel}"/>
+                <RotateTransform Angle="{Binding GameArea.Rocket.FlightDirectionAngle}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Height="2" Fill=" Yellow" Width="{Binding Spielfeld.Rakete.BeschleunigungsBewegung.Length, Converter={StaticResource VektorConverter}}"
+        <Rectangle Height="2" Fill=" Yellow" Width="{Binding GameArea.Rocket.AccelerationMovement.Length, Converter={StaticResource VectorConverter}}"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}"/>
+                <RotateTransform Angle="{Binding GameArea.Rocket.ViewDirectionAngle}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Height="1" Fill="White" Width="50"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}"/>
+                <RotateTransform Angle="{Binding GameArea.Rocket.ViewDirectionAngle}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Height="1" Fill="Orange" Width="50"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Spielfeld.Rakete.PositionsWinkel}"/>
+                <RotateTransform Angle="{Binding GameArea.Rocket.PositionAngle}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
 
-        <Label Content="{Binding Spielfeld.Rakete.X}" ContentStringFormat="X {0}" Foreground="White"/>
-        <Label Content="{Binding Spielfeld.Rakete.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
-        <Label Content="{Binding Spielfeld.Rakete.BlickRichtungsWinkel}" ContentStringFormat="BlickWinkel {0}" Foreground="White" Canvas.Top="40"/>
-        <Label Content="{Binding Spielfeld.Rakete.FlugRichtungsWinkel}" ContentStringFormat="FlugWinkel {0}" Foreground="White" Canvas.Top="60"/>
-        <Label Content="{Binding Spielfeld.Rakete.TreibstoffMenge}" ContentStringFormat="TreibstoffMenge {0}" Foreground="White" Canvas.Top="80"/>
-        <Label Content="{Binding Spielfeld.Rakete.BeschleunigungsBewegung.Length}" ContentStringFormat="BeschleunigungsBewegung {0}" Foreground="White" Canvas.Top="100"/>
-        <Label Content="{Binding Spielfeld.Rakete.Beschleunigung}" ContentStringFormat="Beschleunigung {0}" Foreground="White" Canvas.Top="120"/>
+        <Label Content="{Binding GameArea.Rocket.X}" ContentStringFormat="X {0}" Foreground="White"/>
+        <Label Content="{Binding GameArea.Rocket.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
+        <Label Content="{Binding GameArea.Rocket.ViewDirectionAngle}" ContentStringFormat="ViewAngle {0}" Foreground="White" Canvas.Top="40"/>
+        <Label Content="{Binding GameArea.Rocket.FlightDirectionAngle}" ContentStringFormat="FlightAngle {0}" Foreground="White" Canvas.Top="60"/>
+        <Label Content="{Binding GameArea.Rocket.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>
+        <Label Content="{Binding GameArea.Rocket.AccelerationMovement.Length}" ContentStringFormat="AccelerationMovement {0}" Foreground="White" Canvas.Top="100"/>
+        <Label Content="{Binding GameArea.Rocket.Acceleration}" ContentStringFormat="Acceleration {0}" Foreground="White" Canvas.Top="120"/>
     </Canvas>
 </Window>

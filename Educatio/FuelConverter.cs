@@ -5,13 +5,13 @@ using System.Windows.Data;
 
 namespace Educatio
 {
-    public class TreibstoffConverter : IValueConverter
+    public class FuelConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double treibstoff = (int)value;
-            double treibstoffSkaliert = treibstoff / Rakete.TankGrösse * 100;
-            return treibstoffSkaliert;
+            double fuel = (int)value;
+            double fuelScaled = fuel / Rocket.FuelTankSize * 100;
+            return fuelScaled;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -54,10 +54,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DelegateCommand.cs" />
-    <Compile Include="Rakete.cs" />
-    <Compile Include="Spielfeld.cs" />
-    <Compile Include="TreibstoffConverter.cs" />
-    <Compile Include="VektorConverter.cs" />
+    <Compile Include="Rocket.cs" />
+    <Compile Include="GameArea.cs" />
+    <Compile Include="FuelConverter.cs" />
+    <Compile Include="VectorConverter.cs" />
     <Page Include="MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,16 +101,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\rakete1.png" />
+    <Resource Include="Resources\Images\rocket1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\rakete2.png" />
+    <Resource Include="Resources\Images\rocket2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\weltraum.jpg" />
+    <Resource Include="Resources\Images\space.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\rakete3.png" />
+    <Resource Include="Resources\Images\rocket3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,9 +6,9 @@ namespace Educatio
 
         public MainViewModel()
         {
-            Spielfeld = new Spielfeld();
+            GameArea = new GameArea();
         }
 
-        public Spielfeld Spielfeld { get; set; }
+        public GameArea GameArea { get; set; }
     }
 }

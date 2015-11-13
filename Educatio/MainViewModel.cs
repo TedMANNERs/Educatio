@@ -6,7 +6,7 @@ namespace Educatio
 
         public MainViewModel()
         {
-            GameArea = new GameArea();
+            GameArea = new GameArea(new KeyboardListener());
         }
 
         public GameArea GameArea { get; set; }

@@ -159,12 +159,13 @@ namespace Educatio
                 BeschleunigungsBewegung = VektorAusLängeUndWinkel(Beschleunigung, BlickRichtungsWinkel);
 
                 Vector xAchse = VektorAusLängeUndWinkel(1, 0);
-                FlugRichtungsWinkel = (int)Vector.AngleBetween(RaumBewegung, xAchse);
-                BewegeInRichtung(RaumBewegung.Length, -FlugRichtungsWinkel);
-                BewegeInRichtung(BeschleunigungsBewegung.Length, BlickRichtungsWinkel);
-                RaumBewegung = Vector.Add(RaumBewegung, BeschleunigungsBewegung);
-
                 PositionsWinkel = (int)Vector.AngleBetween(new Vector(X, Y), xAchse);
+                FlugRichtungsWinkel = 360 - (int)Vector.AngleBetween(RaumBewegung, xAchse);
+
+                BewegeInRichtung(RaumBewegung.Length, FlugRichtungsWinkel);
+                BewegeInRichtung(BeschleunigungsBewegung.Length, BlickRichtungsWinkel);
+
+                RaumBewegung = Vector.Add(RaumBewegung, BeschleunigungsBewegung);
 
                 Thread.Sleep(30);
             }
@@ -189,7 +190,7 @@ namespace Educatio
 
         public void Agedrückt()
         {
-            if (TreibstoffMenge > 0 && DrehBeschleunigung >= -10)
+            if (TreibstoffMenge > 0)
             {
                 DrehBeschleunigung--;
                 TreibstoffMenge--;
@@ -206,7 +207,7 @@ namespace Educatio
 
         public void Dgedrückt()
         {
-            if (TreibstoffMenge > 0 && DrehBeschleunigung <= 10)
+            if (TreibstoffMenge > 0)
             {
                 DrehBeschleunigung++;
                 TreibstoffMenge--;
@@ -227,6 +228,7 @@ namespace Educatio
         public void Tgedrückt()
         {
             DrehBeschleunigung = 0;
+            Beschleunigung = 0;
         }
 
         private static int BegrenzeWinkel(int winkel)

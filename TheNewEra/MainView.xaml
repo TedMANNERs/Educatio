@@ -1,12 +1,12 @@
-﻿<Window x:Class="Educatio.MainView"
+﻿<Window x:Class="TheNewEra.MainView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:Educatio" Background="Black"
+        xmlns:local="clr-namespace:TheNewEra" Background="Black"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance local:MainViewModelDesignData, IsDesignTimeCreatable=True}"
-        Title="Educatio" Height="500" Width="825" Name="MainWindow">
+        Title="Educatio" Height="500" Width="825" Name="MainWindow" Icon="Resources/Images/logo.ico">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>

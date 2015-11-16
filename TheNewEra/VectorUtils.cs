@@ -1,7 +1,7 @@
 using System;
 using System.Windows;
 
-namespace Educatio
+namespace TheNewEra
 {
     public static class VectorUtils
     {

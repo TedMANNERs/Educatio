@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Educatio
+namespace TheNewEra
 {
     public delegate bool CommandCanExecute();
 

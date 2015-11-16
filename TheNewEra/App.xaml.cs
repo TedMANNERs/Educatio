@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Educatio
+namespace TheNewEra
 {
     /// <summary>
     /// Interaction logic for App.xaml

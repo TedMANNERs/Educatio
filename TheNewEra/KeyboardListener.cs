@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Input;
 
-namespace Educatio
+namespace TheNewEra
 {
     public class KeyboardListener
     {

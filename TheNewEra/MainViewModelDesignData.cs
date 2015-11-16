@@ -1,4 +1,4 @@
-namespace Educatio
+namespace TheNewEra
 {
     public class MainViewModelDesignData
     {

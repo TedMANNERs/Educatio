@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Educatio
+namespace TheNewEra
 {
     public class MainViewModel
     {

@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace TheNewEra
 {
-    public class KeyboardListener
+    public class KeyboardListener : IKeyboardListener
     {
         private readonly Thread _keyboardThread;
         private bool _isRunning;

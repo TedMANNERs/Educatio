@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace TheNewEra
 {
-    public class Universe
+    public class Universe : IUniverse
     {
         private bool _isRunning = true;
 

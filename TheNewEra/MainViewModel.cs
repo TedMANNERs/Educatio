@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace TheNewEra
 {
-    public class MainViewModel
+    public class MainViewModel : IMainViewModel
     {
         public MainViewModel()
         {

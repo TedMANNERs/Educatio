@@ -1,16 +1,13 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using Educatio.Annotations;
 
 namespace Educatio
 {
-    public class Meteoroid : INotifyPropertyChanged
+    public class Meteoroid : INotifyPropertyChanged, IMoveableObject
     {
-        private int _acceleration;
+        private double _acceleration;
         private Vector _accelerationMovement;
         private int _flightDirectionAngle;
         private Vector _spaceMovement;
@@ -25,8 +22,6 @@ namespace Educatio
             _y = y;
             RotateAcceleration = rotateAcceleration;
             SpaceMovement = movement;
-            Task task = new Task(Loop);
-            task.Start();
             Sprite = "Resources/Images/asteroid.png";
         }
 
@@ -60,7 +55,7 @@ namespace Educatio
             }
         }
 
-        public int Acceleration
+        public double Acceleration
         {
             get { return _acceleration; }
             set
@@ -111,34 +106,6 @@ namespace Educatio
         }
 
         public int RotateAcceleration { get; set; }
-
-        private void Loop()
-        {
-            while (MainViewModel.IsRunning)
-            {
-                ViewDirectionAngle += RotateAcceleration;
-                AccelerationMovement = VectorUtils.GetVector(Acceleration, ViewDirectionAngle);
-
-                Vector xAxis = VectorUtils.GetVector(1, 0);
-                FlightDirectionAngle = 360 - (int)Vector.AngleBetween(SpaceMovement, xAxis);
-
-                MoveInDirection(SpaceMovement.Length, FlightDirectionAngle);
-                MoveInDirection(AccelerationMovement.Length, ViewDirectionAngle);
-
-                SpaceMovement = Vector.Add(SpaceMovement, AccelerationMovement);
-
-                Thread.Sleep(30);
-            }
-        }
-
-        public void MoveInDirection(double length, int angle)
-        {
-            double cos = Math.Cos(angle * (Math.PI / 180));
-            X += length * cos;
-            double sin = Math.Sin(angle * (Math.PI / 180));
-            Y -= length * sin;
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

@@ -55,6 +55,7 @@
     </ApplicationDefinition>
     <Compile Include="AngleUtils.cs" />
     <Compile Include="DelegateCommand.cs" />
+    <Compile Include="IMoveableObject.cs" />
     <Compile Include="KeyboardListener.cs" />
     <Compile Include="MainViewModelDesignData.cs" />
     <Compile Include="Meteoroid.cs" />

@@ -29,7 +29,7 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Canvas.Triggers>
-        <ItemsControl ItemsSource="{Binding Universe.Meteoroids}">
+        <ItemsControl ItemsSource="{Binding Universe.MoveableObjects}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas Height="{Binding ElementName=MainWindow, Path=Height}" Width="{Binding ElementName=MainWindow, Path=Width}"/>
@@ -51,17 +51,12 @@
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
-        
-        <Canvas Canvas.Left="{Binding Universe.Rocket.X}" Canvas.Bottom="{Binding Universe.Rocket.Y}">
-            <Rectangle Height="5" Fill="Red" Width="{Binding Universe.Rocket.FuelTankSize, Converter={StaticResource FuelConverter}}"/>
-            <Rectangle Height="5" Fill="Green" Width="{Binding Universe.Rocket.RemainingFuel, Converter={StaticResource FuelConverter}}"/>
-            <Image Source="{Binding Universe.Rocket.Sprite}" Height="50" Canvas.Top="5">
-                <Image.RenderTransform>
-                    <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle}" CenterX="45" CenterY="25"/>
-                </Image.RenderTransform>
-                
-            </Image>
-        </Canvas>
+
+        <Rectangle Height="5" Fill="Red" Width="{Binding Universe.Rocket.FuelTankSize, Converter={StaticResource FuelConverter}}"
+                   Canvas.Left="{Binding Universe.Rocket.X}" Canvas.Bottom="{Binding Universe.Rocket.Y}" Margin="-20,-20,0,0"/>
+        <Rectangle Height="5" Fill="Green" Width="{Binding Universe.Rocket.RemainingFuel, Converter={StaticResource FuelConverter}}"
+                   Canvas.Left="{Binding Universe.Rocket.X}" Canvas.Bottom="{Binding Universe.Rocket.Y}" Margin="-20,-20,0,0"/>
+
         <Rectangle Height="100" Width="1" Fill="LightGray" Canvas.Bottom="0" Canvas.Left="50" />
         <Rectangle Height="1" Width="100" Fill="LightGray" Canvas.Bottom="50" />
         <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.SpaceMovement.Length, Converter={StaticResource VectorConverter}}" 
@@ -96,5 +91,6 @@
         <Label Content="{Binding Universe.Rocket.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>
         <Label Content="{Binding Universe.Rocket.AccelerationMovement.Length}" ContentStringFormat="AccelerationMovement {0}" Foreground="White" Canvas.Top="100"/>
         <Label Content="{Binding Universe.Rocket.Acceleration}" ContentStringFormat="Acceleration {0}" Foreground="White" Canvas.Top="120"/>
+        <Label Content="{Binding Universe.Rocket.PositionAngle}" ContentStringFormat="PositionAngle {0}" Foreground="White" Canvas.Top="140"/>
     </Canvas>
 </Window>

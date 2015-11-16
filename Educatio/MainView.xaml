@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance local:MainViewModelDesignData, IsDesignTimeCreatable=True}"
-        Title="Educatio" Height="500" Width="825" Closed="Window_Closed" Name="MainWindow">
+        Title="Educatio" Height="500" Width="825" Name="MainWindow">
     <Window.DataContext>
         <local:MainViewModel/>
     </Window.DataContext>

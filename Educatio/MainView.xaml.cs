@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 
 namespace Educatio
 {
@@ -12,13 +10,8 @@ namespace Educatio
         public MainView()
         {
             InitializeComponent();
-        }
-
-        private void Window_Closed(object sender, System.EventArgs e)
-        {
-            MainViewModel.IsRunning = false;
             MainViewModel mainViewModel = (MainViewModel)DataContext;
-            mainViewModel.Universe.KeyboardListener.Stop();
+            Closing += mainViewModel.Close;
         }
     }
 }

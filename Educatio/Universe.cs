@@ -9,6 +9,8 @@ namespace Educatio
 {
     public class Universe
     {
+        private bool _isRunning = true;
+
         public Universe(KeyboardListener keyboardListener)
         {
             KeyboardListener = keyboardListener;
@@ -47,7 +49,7 @@ namespace Educatio
 
         private void Loop()
         {
-            while (MainViewModel.IsRunning)
+            while (_isRunning)
             {
                 foreach (IMoveableObject moveableObject in MoveableObjects)
                 {
@@ -76,6 +78,12 @@ namespace Educatio
 
                 Thread.Sleep(30);
             }
+        }
+
+        public void Stop()
+        {
+            _isRunning = false;
+            KeyboardListener.Stop();
         }
     }
 }

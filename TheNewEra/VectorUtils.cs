@@ -5,13 +5,14 @@ namespace TheNewEra
 {
     public static class VectorUtils
     {
+        public const double ScaleFactor = 10.0;
 
-        public static Vector GetVector(double length, double angle)
+        public static Vector GetScaledVector(double length, double angle)
         {
             double cos = Math.Cos(angle * (Math.PI / 180));
             double sin = Math.Sin(angle * (Math.PI / 180));
-            double x = (length / 10.0) * cos;
-            double y = (length / 10.0) * sin;
+            double x = (length / ScaleFactor) * cos;
+            double y = (length / ScaleFactor) * sin;
             return new Vector(x, y);
         }
 

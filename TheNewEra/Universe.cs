@@ -16,8 +16,8 @@ namespace TheNewEra
             KeyboardListener = keyboardListener;
 
             MoveableObjects = new ObservableCollection<IMoveableObject>();
-            MoveableObjects.Add(new Meteoroid(1000, 200, 1, VectorUtils.GetVector(8, 180), 50, 75));
-            MoveableObjects.Add(new Meteoroid(800, 150, -2, VectorUtils.GetVector(7, 178), 66, 95));
+            MoveableObjects.Add(new Meteoroid(1000, 200, 1, VectorUtils.GetScaledVector(8, 180), 50, 75));
+            MoveableObjects.Add(new Meteoroid(800, 150, -2, VectorUtils.GetScaledVector(7, 178), 66, 95));
             MoveableObjects.Add(new Rocket(200, 200, 50, 89));
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
@@ -53,14 +53,14 @@ namespace TheNewEra
             {
                 foreach (IMoveableObject moveableObject in MoveableObjects)
                 {
-                    Vector xAxis = VectorUtils.GetVector(1, 0);
+                    Vector xAxis = VectorUtils.GetScaledVector(1, 0);
                     Vector navigatorCenter = new Vector(50, 50);
                     Vector rocketPosition = Vector.Subtract(new Vector(Rocket.X, Rocket.Y), navigatorCenter);
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
                     Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
 
                     moveableObject.ViewDirectionAngle += moveableObject.RotationThrust;
-                    moveableObject.ThrustMovement = VectorUtils.GetVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
+                    moveableObject.ThrustMovement = VectorUtils.GetScaledVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
 
                     moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
 

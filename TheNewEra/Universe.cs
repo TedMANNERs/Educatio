@@ -55,7 +55,7 @@ namespace TheNewEra
                 {
                     Vector xAxis = VectorUtils.GetVector(1, 0);
                     Vector navigatorCenter = new Vector(50, 50);
-                    Vector rocketPosition = Vector.Subtract(new Vector(Rocket.X + 20, Rocket.Y - 10), navigatorCenter);
+                    Vector rocketPosition = Vector.Subtract(new Vector(Rocket.X, Rocket.Y), navigatorCenter);
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
                     Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
 

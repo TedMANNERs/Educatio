@@ -9,80 +9,24 @@ namespace Educatio
     {
         private double _acceleration;
         private Vector _accelerationMovement;
-        private int _flightDirectionAngle;
+        private double _flightDirectionAngle;
         private Vector _spaceMovement;
         private string _sprite;
-        private int _viewDirectionAngle;
+        private double _viewDirectionAngle;
         private double _x;
         private double _y;
 
-        public Meteoroid(double x, double y, int rotateAcceleration, Vector movement)
+        public Meteoroid(double x, double y, int rotateAcceleration, Vector movement, int height, int width)
         {
             _x = x;
             _y = y;
             RotateAcceleration = rotateAcceleration;
             SpaceMovement = movement;
+            Height = height;
+            Width = width;
+            CenterX = Width / 2.0;
+            CenterY = Height / 2.0;
             Sprite = "Resources/Images/asteroid.png";
-        }
-
-        public string Sprite
-        {
-            get { return _sprite; }
-            set
-            {
-                _sprite = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int FlightDirectionAngle
-        {
-            get { return _flightDirectionAngle; }
-            set
-            {
-                _flightDirectionAngle = AngleUtils.LimitAngle(value);
-                OnPropertyChanged();
-            }
-        }
-
-        public Vector AccelerationMovement
-        {
-            get { return _accelerationMovement; }
-            set
-            {
-                _accelerationMovement = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public double Acceleration
-        {
-            get { return _acceleration; }
-            set
-            {
-                _acceleration = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int ViewDirectionAngle
-        {
-            get { return _viewDirectionAngle; }
-            set
-            {
-                _viewDirectionAngle = AngleUtils.LimitAngle(value);
-                OnPropertyChanged();
-            }
-        }
-
-        public Vector SpaceMovement
-        {
-            get { return _spaceMovement; }
-            set
-            {
-                _spaceMovement = value;
-                OnPropertyChanged();
-            }
         }
 
         public double X
@@ -105,7 +49,73 @@ namespace Educatio
             }
         }
 
-        public int RotateAcceleration { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public double CenterX { get; private set; }
+        public double CenterY { get; private set; }
+
+        public string Sprite
+        {
+            get { return _sprite; }
+            set
+            {
+                _sprite = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double RotateAcceleration { get; set; }
+
+        public double Acceleration
+        {
+            get { return _acceleration; }
+            set
+            {
+                _acceleration = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Vector AccelerationMovement
+        {
+            get { return _accelerationMovement; }
+            set
+            {
+                _accelerationMovement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Vector SpaceMovement
+        {
+            get { return _spaceMovement; }
+            set
+            {
+                _spaceMovement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double FlightDirectionAngle
+        {
+            get { return _flightDirectionAngle; }
+            set
+            {
+                _flightDirectionAngle = AngleUtils.LimitAngle(value);
+                OnPropertyChanged();
+            }
+        }
+
+        public double ViewDirectionAngle
+        {
+            get { return _viewDirectionAngle; }
+            set
+            {
+                _viewDirectionAngle = AngleUtils.LimitAngle(value);
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

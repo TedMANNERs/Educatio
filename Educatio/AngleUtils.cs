@@ -2,7 +2,7 @@ namespace Educatio
 {
     public class AngleUtils
     {
-        public static int LimitAngle(int angle)
+        public static double LimitAngle(double angle)
         {
             if (angle < 0)
                 return 360 + angle;

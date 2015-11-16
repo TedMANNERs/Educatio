@@ -6,7 +6,7 @@ namespace Educatio
     public static class VectorUtils
     {
 
-        public static Vector GetVector(double length, int angle)
+        public static Vector GetVector(double length, double angle)
         {
             double cos = Math.Cos(angle * (Math.PI / 180));
             double sin = Math.Sin(angle * (Math.PI / 180));
@@ -15,7 +15,7 @@ namespace Educatio
             return new Vector(x, y);
         }
 
-        public static Point GetCoordinates(double length, int angle)
+        public static Point GetCoordinates(double length, double angle)
         {
             double cos = Math.Cos(angle * (Math.PI / 180));
             double sin = Math.Sin(angle * (Math.PI / 180));

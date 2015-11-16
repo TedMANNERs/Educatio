@@ -9,19 +9,23 @@ namespace Educatio
     {
         private double _acceleration;
         private Vector _accelerationMovement;
-        private int _flightDirectionAngle;
-        private int _positionAngle;
+        private double _flightDirectionAngle;
+        private double _positionAngle;
         private int _remainingFuel;
         private Vector _spaceMovement;
         private string _sprite;
-        private int _viewDirectionAngle;
+        private double _viewDirectionAngle;
         private double _x;
         private double _y;
 
-        public Rocket(double x, double y)
+        public Rocket(double x, double y, int height, int width)
         {
+            Height = height;
+            Width = width;
             _x = x;
             _y = y;
+            CenterX = Width / 2.0;
+            CenterY = Height / 2.0;
             Sprite = "Resources/Images/rocket1.png";
         }
 
@@ -37,72 +41,12 @@ namespace Educatio
             }
         }
 
-        public int PositionAngle
+        public double PositionAngle
         {
             get { return _positionAngle; }
             set
             {
                 _positionAngle = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Sprite
-        {
-            get { return _sprite; }
-            set
-            {
-                _sprite = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int FlightDirectionAngle
-        {
-            get { return _flightDirectionAngle; }
-            set
-            {
-                _flightDirectionAngle = AngleUtils.LimitAngle(value);
-                OnPropertyChanged();
-            }
-        }
-
-        public Vector AccelerationMovement
-        {
-            get { return _accelerationMovement; }
-            set
-            {
-                _accelerationMovement = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public double Acceleration
-        {
-            get { return _acceleration; }
-            set
-            {
-                _acceleration = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int ViewDirectionAngle
-        {
-            get { return _viewDirectionAngle; }
-            set
-            {
-                _viewDirectionAngle = AngleUtils.LimitAngle(value);
-                OnPropertyChanged();
-            }
-        }
-
-        public Vector SpaceMovement
-        {
-            get { return _spaceMovement; }
-            set
-            {
-                _spaceMovement = value;
                 OnPropertyChanged();
             }
         }
@@ -127,7 +71,73 @@ namespace Educatio
             }
         }
 
-        public int RotateAcceleration { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public double CenterY { get; private set; }
+        public double CenterX { get; private set; }
+
+        public string Sprite
+        {
+            get { return _sprite; }
+            set
+            {
+                _sprite = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double RotateAcceleration { get; set; }
+
+        public double Acceleration
+        {
+            get { return _acceleration; }
+            set
+            {
+                _acceleration = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Vector AccelerationMovement
+        {
+            get { return _accelerationMovement; }
+            set
+            {
+                _accelerationMovement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Vector SpaceMovement
+        {
+            get { return _spaceMovement; }
+            set
+            {
+                _spaceMovement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double FlightDirectionAngle
+        {
+            get { return _flightDirectionAngle; }
+            set
+            {
+                _flightDirectionAngle = AngleUtils.LimitAngle(value);
+                OnPropertyChanged();
+            }
+        }
+
+        public double ViewDirectionAngle
+        {
+            get { return _viewDirectionAngle; }
+            set
+            {
+                _viewDirectionAngle = AngleUtils.LimitAngle(value);
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void PressedW()
@@ -142,7 +152,7 @@ namespace Educatio
         {
             if (RemainingFuel > 0)
             {
-                RotateAcceleration--;
+                RotateAcceleration -= 0.2;
                 RemainingFuel--;
             }
         }
@@ -163,7 +173,7 @@ namespace Educatio
         {
             if (RemainingFuel > 0)
             {
-                RotateAcceleration++;
+                RotateAcceleration += 0.2;
                 RemainingFuel--;
             }
         }

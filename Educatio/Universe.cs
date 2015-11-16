@@ -16,9 +16,9 @@ namespace Educatio
             KeyboardListener = keyboardListener;
 
             MoveableObjects = new ObservableCollection<IMoveableObject>();
-            MoveableObjects.Add(new Meteoroid(1000, 200, 1, VectorUtils.GetVector(8, 180)));
-            MoveableObjects.Add(new Meteoroid(800, 150, -2, VectorUtils.GetVector(7, 178)));
-            MoveableObjects.Add(new Rocket(200, 200));
+            MoveableObjects.Add(new Meteoroid(1000, 200, 1, VectorUtils.GetVector(8, 180), 50, 75));
+            MoveableObjects.Add(new Meteoroid(800, 150, -2, VectorUtils.GetVector(7, 178), 66, 95));
+            MoveableObjects.Add(new Rocket(200, 200, 50, 89));
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
             Rocket.FuelTankSize = 500;
@@ -38,7 +38,7 @@ namespace Educatio
 
         public Universe()
         {
-            Rocket = new Rocket(200, 200);
+            Rocket = new Rocket(200, 200, 50, 89);
             Rocket.FuelTankSize = 500;
             Rocket.RemainingFuel = 500;
         }
@@ -71,12 +71,12 @@ namespace Educatio
                     Vector navigatorCenter = new Vector(50, 50);
                     Vector rocketPosition = Vector.Subtract(new Vector(Rocket.X + 20, Rocket.Y - 10), navigatorCenter);
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
-                    Rocket.PositionAngle = (int)Vector.AngleBetween(rocketPosition, navigatorXAxis);
+                    Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
 
                     moveableObject.ViewDirectionAngle += moveableObject.RotateAcceleration;
                     moveableObject.AccelerationMovement = VectorUtils.GetVector(moveableObject.Acceleration, moveableObject.ViewDirectionAngle);
 
-                    moveableObject.FlightDirectionAngle = 360 - (int)Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
+                    moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
 
                     Point movement = VectorUtils.GetCoordinates(moveableObject.SpaceMovement.Length, -moveableObject.FlightDirectionAngle);
                     moveableObject.X += movement.X;

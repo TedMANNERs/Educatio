@@ -9,8 +9,6 @@ namespace Educatio
 {
     public class Universe
     {
-        private int _imageId = 1;
-
         public Universe(KeyboardListener keyboardListener)
         {
             KeyboardListener = keyboardListener;
@@ -21,8 +19,8 @@ namespace Educatio
             MoveableObjects.Add(new Rocket(200, 200, 50, 89));
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
-            Rocket.FuelTankSize = 500;
-            Rocket.RemainingFuel = 500;
+            Rocket.FuelTankSize = 5000;
+            Rocket.RemainingFuel = 5000;
 
             KeyboardListener.Subscribers.Add(Key.W, Rocket.PressedW);
             KeyboardListener.Subscribers.Add(Key.A, Rocket.PressedA);
@@ -53,20 +51,6 @@ namespace Educatio
             {
                 foreach (IMoveableObject moveableObject in MoveableObjects)
                 {
-                    if (Rocket.RemainingFuel <= 0 || Rocket.AccelerationMovement.Length <= 0)
-                    {
-                        Rocket.Sprite = "Resources/Images/rocket3.png";
-                    }
-                    else
-                    {
-                        if (_imageId > 2)
-                        {
-                            _imageId = 1;
-                        }
-                        Rocket.Sprite = "Resources/Images/rocket" + _imageId + ".png";
-                        _imageId++;
-                    }
-
                     Vector xAxis = VectorUtils.GetVector(1, 0);
                     Vector navigatorCenter = new Vector(50, 50);
                     Vector rocketPosition = Vector.Subtract(new Vector(Rocket.X + 20, Rocket.Y - 10), navigatorCenter);
@@ -86,6 +70,8 @@ namespace Educatio
                     moveableObject.Y += movement.Y;
 
                     moveableObject.SpaceMovement = Vector.Add(moveableObject.SpaceMovement, moveableObject.AccelerationMovement);
+
+                    moveableObject.Update();
                 }
 
                 Thread.Sleep(30);

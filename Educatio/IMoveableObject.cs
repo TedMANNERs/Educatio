@@ -17,5 +17,7 @@ namespace Educatio
         Vector SpaceMovement { get; set; }
         double FlightDirectionAngle { get; set; }
         double ViewDirectionAngle { get; set; }
+
+        void Update();
     }
 }

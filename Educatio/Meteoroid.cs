@@ -116,6 +116,10 @@ namespace Educatio
             }
         }
 
+        public void Update()
+        {
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

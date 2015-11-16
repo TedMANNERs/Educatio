@@ -10,6 +10,7 @@ namespace Educatio
         private double _acceleration;
         private Vector _accelerationMovement;
         private double _flightDirectionAngle;
+        private int _imageId = 1;
         private double _positionAngle;
         private int _remainingFuel;
         private Vector _spaceMovement;
@@ -135,6 +136,24 @@ namespace Educatio
             {
                 _viewDirectionAngle = AngleUtils.LimitAngle(value);
                 OnPropertyChanged();
+            }
+        }
+
+        public void Update()
+        {
+            if (RemainingFuel <= 0 || AccelerationMovement.Length <= 0)
+            {
+                Sprite = "Resources/Images/rocket3.png";
+            }
+            else
+            {
+                if (_imageId > 2)
+                {
+                    _imageId = 1;
+                }
+                Sprite = "Resources/Images/rocket" + _imageId + ".png";
+                _imageId++;
+                RemainingFuel--;
             }
         }
 

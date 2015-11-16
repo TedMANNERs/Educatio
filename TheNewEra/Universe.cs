@@ -24,10 +24,10 @@ namespace TheNewEra
             Rocket.FuelTankSize = 5000;
             Rocket.RemainingFuel = 5000;
 
-            KeyboardListener.Subscribers.Add(Key.W, Rocket.PressedW);
-            KeyboardListener.Subscribers.Add(Key.A, Rocket.PressedA);
-            KeyboardListener.Subscribers.Add(Key.S, Rocket.PressedS);
-            KeyboardListener.Subscribers.Add(Key.D, Rocket.PressedD);
+            KeyboardListener.Subscribers.Add(Key.W, Rocket.IncreaseThrust);
+            KeyboardListener.Subscribers.Add(Key.A, Rocket.RotateLeft);
+            KeyboardListener.Subscribers.Add(Key.S, Rocket.DecreaseThrust);
+            KeyboardListener.Subscribers.Add(Key.D, Rocket.RotateRight);
             KeyboardListener.Subscribers.Add(Key.R, Rocket.PressedR);
             KeyboardListener.Subscribers.Add(Key.T, Rocket.PressedT);
             KeyboardListener.Start();
@@ -59,19 +59,19 @@ namespace TheNewEra
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
                     Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
 
-                    moveableObject.ViewDirectionAngle += moveableObject.RotateAcceleration;
-                    moveableObject.AccelerationMovement = VectorUtils.GetVector(moveableObject.Acceleration, moveableObject.ViewDirectionAngle);
+                    moveableObject.ViewDirectionAngle += moveableObject.RotationThrust;
+                    moveableObject.ThrustMovement = VectorUtils.GetVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
 
                     moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
 
                     Point movement = VectorUtils.GetCoordinates(moveableObject.SpaceMovement.Length, -moveableObject.FlightDirectionAngle);
                     moveableObject.X += movement.X;
                     moveableObject.Y += movement.Y;
-                    movement = VectorUtils.GetCoordinates(moveableObject.AccelerationMovement.Length, moveableObject.ViewDirectionAngle);
+                    movement = VectorUtils.GetCoordinates(moveableObject.ThrustMovement.Length, moveableObject.ViewDirectionAngle);
                     moveableObject.X += movement.X;
                     moveableObject.Y += movement.Y;
 
-                    moveableObject.SpaceMovement = Vector.Add(moveableObject.SpaceMovement, moveableObject.AccelerationMovement);
+                    moveableObject.SpaceMovement = Vector.Add(moveableObject.SpaceMovement, moveableObject.ThrustMovement);
 
                     moveableObject.Update();
                 }

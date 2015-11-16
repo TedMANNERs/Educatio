@@ -65,7 +65,7 @@
                 <RotateTransform Angle="{Binding Universe.Rocket.FlightDirectionAngle}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Height="2" Fill=" Yellow" Width="{Binding Universe.Rocket.AccelerationMovement.Length, Converter={StaticResource VectorConverter}}"
+        <Rectangle Height="2" Fill=" Yellow" Width="{Binding Universe.Rocket.ThrustMovement.Length, Converter={StaticResource VectorConverter}}"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle}"/>
@@ -89,8 +89,8 @@
         <Label Content="{Binding Universe.Rocket.ViewDirectionAngle}" ContentStringFormat="ViewAngle {0}" Foreground="White" Canvas.Top="40"/>
         <Label Content="{Binding Universe.Rocket.FlightDirectionAngle}" ContentStringFormat="FlightAngle {0}" Foreground="White" Canvas.Top="60"/>
         <Label Content="{Binding Universe.Rocket.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>
-        <Label Content="{Binding Universe.Rocket.AccelerationMovement.Length}" ContentStringFormat="AccelerationMovement {0}" Foreground="White" Canvas.Top="100"/>
-        <Label Content="{Binding Universe.Rocket.Acceleration}" ContentStringFormat="Acceleration {0}" Foreground="White" Canvas.Top="120"/>
+        <Label Content="{Binding Universe.Rocket.ThrustMovement.Length}" ContentStringFormat="ThrustMovement {0}" Foreground="White" Canvas.Top="100"/>
+        <Label Content="{Binding Universe.Rocket.Thrust}" ContentStringFormat="Thrust {0}" Foreground="White" Canvas.Top="120"/>
         <Label Content="{Binding Universe.Rocket.PositionAngle}" ContentStringFormat="PositionAngle {0}" Foreground="White" Canvas.Top="140"/>
     </Canvas>
 </Window>

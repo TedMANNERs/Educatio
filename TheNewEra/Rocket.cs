@@ -7,8 +7,8 @@ namespace TheNewEra
 {
     public class Rocket : INotifyPropertyChanged, IMoveableObject
     {
-        private double _acceleration;
-        private Vector _accelerationMovement;
+        private double _thrust;
+        private Vector _thrustMovement;
         private double _flightDirectionAngle;
         private int _imageId = 1;
         private double _positionAngle;
@@ -87,24 +87,24 @@ namespace TheNewEra
             }
         }
 
-        public double RotateAcceleration { get; set; }
+        public double RotationThrust { get; set; }
 
-        public double Acceleration
+        public double Thrust
         {
-            get { return _acceleration; }
+            get { return _thrust; }
             set
             {
-                _acceleration = value;
+                _thrust = value;
                 OnPropertyChanged();
             }
         }
 
-        public Vector AccelerationMovement
+        public Vector ThrustMovement
         {
-            get { return _accelerationMovement; }
+            get { return _thrustMovement; }
             set
             {
-                _accelerationMovement = value;
+                _thrustMovement = value;
                 OnPropertyChanged();
             }
         }
@@ -141,7 +141,7 @@ namespace TheNewEra
 
         public void Update()
         {
-            if (RemainingFuel <= 0 || AccelerationMovement.Length <= 0)
+            if (RemainingFuel <= 0 || ThrustMovement.Length <= 0)
             {
                 Sprite = "Resources/Images/rocket3.png";
             }
@@ -159,59 +159,59 @@ namespace TheNewEra
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void PressedW()
+        public void IncreaseThrust()
         {
-            if (RemainingFuel > 0 && Acceleration < 20)
+            if (RemainingFuel > 0 && Thrust < 20)
             {
-                Acceleration += 0.1;
+                Thrust += 0.1;
             }
         }
 
-        public void PressedA()
+        public void RotateLeft()
         {
             if (RemainingFuel > 0)
             {
-                RotateAcceleration -= 0.2;
+                RotationThrust -= 0.2;
                 RemainingFuel--;
             }
         }
 
-        public void PressedS()
+        public void DecreaseThrust()
         {
-            if (Acceleration > 0)
+            if (Thrust > 0)
             {
-                Acceleration -= 0.5;
+                Thrust -= 0.5;
             }
             else
             {
-                Acceleration = 0;
+                Thrust = 0;
             }
         }
 
-        public void PressedD()
+        public void RotateRight()
         {
             if (RemainingFuel > 0)
             {
-                RotateAcceleration += 0.2;
+                RotationThrust += 0.2;
                 RemainingFuel--;
             }
         }
 
         public void PressedR()
         {
-            Acceleration = 0;
+            Thrust = 0;
             SpaceMovement = new Vector();
             RemainingFuel = FuelTankSize;
             ViewDirectionAngle = 0;
-            RotateAcceleration = 0;
+            RotationThrust = 0;
             X = 200;
             Y = 200;
         }
 
         public void PressedT()
         {
-            RotateAcceleration = 0;
-            Acceleration = 0;
+            RotationThrust = 0;
+            Thrust = 0;
         }
 
         [NotifyPropertyChangedInvocator]

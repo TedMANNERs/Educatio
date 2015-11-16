@@ -7,8 +7,8 @@ namespace TheNewEra
 {
     public class Meteoroid : INotifyPropertyChanged, IMoveableObject
     {
-        private double _acceleration;
-        private Vector _accelerationMovement;
+        private double _thrust;
+        private Vector _thrustMovement;
         private double _flightDirectionAngle;
         private Vector _spaceMovement;
         private string _sprite;
@@ -16,11 +16,11 @@ namespace TheNewEra
         private double _x;
         private double _y;
 
-        public Meteoroid(double x, double y, int rotateAcceleration, Vector movement, int height, int width)
+        public Meteoroid(double x, double y, int rotationThrust, Vector movement, int height, int width)
         {
             _x = x;
             _y = y;
-            RotateAcceleration = rotateAcceleration;
+            RotationThrust = rotationThrust;
             SpaceMovement = movement;
             Height = height;
             Width = width;
@@ -64,24 +64,24 @@ namespace TheNewEra
             }
         }
 
-        public double RotateAcceleration { get; set; }
+        public double RotationThrust { get; set; }
 
-        public double Acceleration
+        public double Thrust
         {
-            get { return _acceleration; }
+            get { return _thrust; }
             set
             {
-                _acceleration = value;
+                _thrust = value;
                 OnPropertyChanged();
             }
         }
 
-        public Vector AccelerationMovement
+        public Vector ThrustMovement
         {
-            get { return _accelerationMovement; }
+            get { return _thrustMovement; }
             set
             {
-                _accelerationMovement = value;
+                _thrustMovement = value;
                 OnPropertyChanged();
             }
         }

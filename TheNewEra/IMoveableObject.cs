@@ -11,9 +11,9 @@ namespace TheNewEra
         double CenterX { get; }
         double CenterY { get; }
         string Sprite { get; set; }
-        double Acceleration { get; set; }
-        double RotateAcceleration { get; set; }
-        Vector AccelerationMovement { get; set; }
+        double Thrust { get; set; }
+        double RotationThrust { get; set; }
+        Vector ThrustMovement { get; set; }
         Vector SpaceMovement { get; set; }
         double FlightDirectionAngle { get; set; }
         double ViewDirectionAngle { get; set; }

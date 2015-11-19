@@ -59,7 +59,7 @@ namespace TheNewEra
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
                     Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
 
-                    moveableObject.ViewDirectionAngle += moveableObject.RotationThrust;
+                    moveableObject.ViewDirectionAngle += moveableObject.RotationSpeed;
                     moveableObject.ThrustMovement = VectorUtils.GetScaledVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
 
                     moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);

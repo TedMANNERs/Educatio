@@ -12,7 +12,7 @@ namespace TheNewEra
         double CenterY { get; }
         string Sprite { get; set; }
         double Thrust { get; set; }
-        double RotationThrust { get; set; }
+        double RotationSpeed { get; set; }
         Vector ThrustMovement { get; set; }
         Vector SpaceMovement { get; set; }
         double FlightDirectionAngle { get; set; }

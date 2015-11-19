@@ -69,13 +69,13 @@ namespace TheNewEraTest
             // arrange
             const double RotationThrust = 0;
             _testee.RemainingFuel = 100;
-            _testee.RotationThrust = RotationThrust;
+            _testee.RotationSpeed = RotationThrust;
 
             // act
             _testee.RotateLeft();
 
             // assert
-            _testee.RotationThrust.Should().BeLessThan(RotationThrust);
+            _testee.RotationSpeed.Should().BeLessThan(RotationThrust);
         }
 
         [Test]
@@ -84,13 +84,13 @@ namespace TheNewEraTest
             // arrange
             const double RotationThrust = 0;
             _testee.RemainingFuel = 100;
-            _testee.RotationThrust = RotationThrust;
+            _testee.RotationSpeed = RotationThrust;
 
             // act
             _testee.RotateRight();
 
             // assert
-            _testee.RotationThrust.Should().BeGreaterThan(RotationThrust);
+            _testee.RotationSpeed.Should().BeGreaterThan(RotationThrust);
         }
     }
 }

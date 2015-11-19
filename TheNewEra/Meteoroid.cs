@@ -16,11 +16,11 @@ namespace TheNewEra
         private double _x;
         private double _y;
 
-        public Meteoroid(double x, double y, int rotationThrust, Vector movement, int height, int width)
+        public Meteoroid(double x, double y, int rotationSpeed, Vector movement, int height, int width)
         {
             _x = x;
             _y = y;
-            RotationThrust = rotationThrust;
+            RotationSpeed = rotationSpeed;
             SpaceMovement = movement;
             Height = height;
             Width = width;
@@ -64,7 +64,7 @@ namespace TheNewEra
             }
         }
 
-        public double RotationThrust { get; set; }
+        public double RotationSpeed { get; set; }
 
         public double Thrust
         {

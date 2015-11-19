@@ -87,7 +87,7 @@ namespace TheNewEra
             }
         }
 
-        public double RotationThrust { get; set; }
+        public double RotationSpeed { get; set; }
 
         public double Thrust
         {
@@ -171,7 +171,7 @@ namespace TheNewEra
         {
             if (RemainingFuel > 0)
             {
-                RotationThrust -= 0.2;
+                RotationSpeed -= 0.2;
                 RemainingFuel--;
             }
         }
@@ -192,7 +192,7 @@ namespace TheNewEra
         {
             if (RemainingFuel > 0)
             {
-                RotationThrust += 0.2;
+                RotationSpeed += 0.2;
                 RemainingFuel--;
             }
         }
@@ -203,14 +203,14 @@ namespace TheNewEra
             SpaceMovement = new Vector();
             RemainingFuel = FuelTankSize;
             ViewDirectionAngle = 0;
-            RotationThrust = 0;
+            RotationSpeed = 0;
             X = 200;
             Y = 200;
         }
 
         public void PressedT()
         {
-            RotationThrust = 0;
+            RotationSpeed = 0;
             Thrust = 0;
         }
 

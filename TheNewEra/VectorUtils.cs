@@ -9,8 +9,8 @@ namespace TheNewEra
 
         public static Vector GetScaledVector(double length, double angle)
         {
-            double cos = Math.Cos(angle * (Math.PI / 180));
-            double sin = Math.Sin(angle * (Math.PI / 180));
+            double cos = Math.Cos(AngleUtils.ConvertToRadians(angle));
+            double sin = Math.Sin(AngleUtils.ConvertToRadians(angle));
             double x = (length / ScaleFactor) * cos;
             double y = (length / ScaleFactor) * sin;
             return new Vector(x, y);
@@ -18,8 +18,8 @@ namespace TheNewEra
 
         public static Point GetCoordinates(double length, double angle)
         {
-            double cos = Math.Cos(angle * (Math.PI / 180));
-            double sin = Math.Sin(angle * (Math.PI / 180));
+            double cos = Math.Cos(AngleUtils.ConvertToRadians(angle));
+            double sin = Math.Sin(AngleUtils.ConvertToRadians(angle));
             double x = length * cos;
             double y = length * sin;
             return new Point(x, y);

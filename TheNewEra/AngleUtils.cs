@@ -1,3 +1,5 @@
+using System;
+
 namespace TheNewEra
 {
     public class AngleUtils
@@ -9,6 +11,11 @@ namespace TheNewEra
             if (angle > 360)
                 return angle - 360;
             return angle;
+        }
+
+        public static double ConvertToRadians(double angle)
+        {
+            return angle * (Math.PI / 180);
         }
     }
 }

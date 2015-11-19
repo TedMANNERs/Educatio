@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
 using TheNewEra;
 
@@ -44,6 +45,20 @@ namespace TheNewEraTest
 
             // act
             double result = AngleUtils.LimitAngle(Angle);
+
+            // assert
+            result.Should().Be(ExpectedAngle);
+        }
+
+        [Test]
+        public void ConvertToRadians_WhenConvertToRadians_ThenReturnAngleInRadians()
+        {
+            // arrange
+            const double Angle = 180;
+            const double ExpectedAngle = Math.PI;
+
+            // act
+            double result = AngleUtils.ConvertToRadians(Angle);
 
             // assert
             result.Should().Be(ExpectedAngle);

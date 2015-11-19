@@ -64,14 +64,10 @@ namespace TheNewEra
 
                     moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
 
-                    Point movement = VectorUtils.GetCoordinates(moveableObject.SpaceMovement.Length, -moveableObject.FlightDirectionAngle);
-                    moveableObject.X += movement.X;
-                    moveableObject.Y += movement.Y;
-                    movement = VectorUtils.GetCoordinates(moveableObject.ThrustMovement.Length, moveableObject.ViewDirectionAngle);
-                    moveableObject.X += movement.X;
-                    moveableObject.Y += movement.Y;
-
                     moveableObject.SpaceMovement = Vector.Add(moveableObject.SpaceMovement, moveableObject.ThrustMovement);
+
+                    moveableObject.X += moveableObject.SpaceMovement.X;
+                    moveableObject.Y -= moveableObject.SpaceMovement.Y;
 
                     moveableObject.Update();
                 }

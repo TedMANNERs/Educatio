@@ -37,7 +37,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Sprite}" Height="{Binding Height}" Width="{Binding Width}">
+                    <Image Source="{Binding Sprite}" Height="{Binding Height}" Width="{Binding Width}" Stretch="Fill">
                         <Image.RenderTransform>
                             <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="{Binding CenterX}" CenterY="{Binding CenterY}"/>
                         </Image.RenderTransform>

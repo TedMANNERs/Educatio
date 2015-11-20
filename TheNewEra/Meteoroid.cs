@@ -8,52 +8,43 @@ namespace TheNewEra
     public class Meteoroid : INotifyPropertyChanged, IMoveableObject
     {
         private double _flightDirectionAngle;
-        private Vector _spaceMovement;
+        private Vector _velocity;
         private string _sprite;
         private double _thrust;
         private Vector _thrustMovement;
         private double _viewDirectionAngle;
-        private double _x;
-        private double _y;
+        private Point _position;
 
-        public Meteoroid(double x, double y, int rotationSpeed, Vector movement, int height, int width)
+        public Meteoroid(Point position, int rotationSpeed, Vector movement, int height, int width)
         {
-            _x = x;
-            _y = y;
+            Position = position;
             RotationSpeed = rotationSpeed;
-            SpaceMovement = movement;
+            Velocity = movement;
             Height = height;
             Width = width;
-            CenterX = Width / 2.0;
-            CenterY = Height / 2.0;
+            RelativeCenter = new Point(Width / 2.0, Height / 2.0);
             Sprite = "Resources/Images/asteroid.png";
             CollisionRadius = Height > Width ? Height / 3 : Width / 3;
         }
 
-        public double X
+        public Point Position
         {
-            get { return _x; }
+            get { return _position; }
             set
             {
-                _x = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public double Y
-        {
-            get { return _y; }
-            set
-            {
-                _y = value;
+                _position = value; 
                 OnPropertyChanged();
             }
         }
 
         public int Height { get; set; }
         public int Width { get; set; }
-        public double CenterX { get; private set; }
-        public double CenterY { get; private set; }
+        public Point RelativeCenter { get; private set; }
+
+        public Vector Center
+        {
+            get { return new Vector(Position.X + RelativeCenter.X, Position.Y + RelativeCenter.Y); }
+        }
 
         public string Sprite
         {
@@ -87,12 +78,12 @@ namespace TheNewEra
             }
         }
 
-        public Vector SpaceMovement
+        public Vector Velocity
         {
-            get { return _spaceMovement; }
+            get { return _velocity; }
             set
             {
-                _spaceMovement = value;
+                _velocity = value;
                 OnPropertyChanged();
             }
         }

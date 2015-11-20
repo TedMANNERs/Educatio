@@ -11,22 +11,19 @@ namespace TheNewEra
         private int _imageId = 1;
         private double _positionAngle;
         private int _remainingFuel;
-        private Vector _spaceMovement;
+        private Vector _velocity;
         private string _sprite;
         private double _thrust;
         private Vector _thrustMovement;
         private double _viewDirectionAngle;
-        private double _x;
-        private double _y;
+        private Point _position;
 
-        public Rocket(double x, double y, int height, int width)
+        public Rocket(Point position, int height, int width)
         {
             Height = height;
             Width = width;
-            _x = x;
-            _y = y;
-            CenterX = Width / 2.0;
-            CenterY = Height / 2.0;
+            Position = position;
+            RelativeCenter = new Point(Width / 2.0, Height / 2.0);
             Sprite = "Resources/Images/rocket1.png";
             CollisionRadius = Height > Width ? Height / 3 : Width / 3;
         }
@@ -53,30 +50,24 @@ namespace TheNewEra
             }
         }
 
-        public double X
+        public Point Position
         {
-            get { return _x; }
+            get { return _position; }
             set
             {
-                _x = value;
+                _position = value; 
                 OnPropertyChanged();
             }
         }
 
-        public double Y
+        public Vector Center
         {
-            get { return _y; }
-            set
-            {
-                _y = value;
-                OnPropertyChanged();
-            }
+            get { return new Vector(Position.X + RelativeCenter.X, Position.Y + RelativeCenter.Y); }
         }
 
         public int Height { get; set; }
         public int Width { get; set; }
-        public double CenterY { get; private set; }
-        public double CenterX { get; private set; }
+        public Point RelativeCenter { get; private set; }
 
         public string Sprite
         {
@@ -110,12 +101,12 @@ namespace TheNewEra
             }
         }
 
-        public Vector SpaceMovement
+        public Vector Velocity
         {
-            get { return _spaceMovement; }
+            get { return _velocity; }
             set
             {
-                _spaceMovement = value;
+                _velocity = value;
                 OnPropertyChanged();
             }
         }
@@ -166,7 +157,7 @@ namespace TheNewEra
         {
             if (RemainingFuel > 0 && Thrust < 20)
             {
-                Thrust += 0.1;
+                Thrust += 0.01;
             }
         }
 
@@ -203,12 +194,11 @@ namespace TheNewEra
         public void PressedR()
         {
             Thrust = 0;
-            SpaceMovement = new Vector();
+            Velocity = new Vector();
             RemainingFuel = FuelTankSize;
             ViewDirectionAngle = 0;
             RotationSpeed = 0;
-            X = 200;
-            Y = 200;
+            Position = new Point(200, 200);
         }
 
         public void PressedT()

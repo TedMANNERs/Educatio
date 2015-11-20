@@ -40,7 +40,7 @@
                     <Grid>
                         <Image Source="{Binding Sprite}" Height="{Binding Height}" Width="{Binding Width}" Stretch="Fill">
                             <Image.RenderTransform>
-                                <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="{Binding CenterX}" CenterY="{Binding CenterY}"/>
+                                <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="{Binding RelativeCenter.X}" CenterY="{Binding RelativeCenter.Y}"/>
                             </Image.RenderTransform>
                         </Image>
                         <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -51,8 +51,8 @@
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
-                    <Setter Property="Canvas.Left" Value="{Binding X}" />
-                    <Setter Property="Canvas.Bottom" Value="{Binding Y}" />
+                    <Setter Property="Canvas.Left" Value="{Binding Position.X}" />
+                    <Setter Property="Canvas.Bottom" Value="{Binding Position.Y}" />
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
@@ -64,7 +64,7 @@
 
         <Rectangle Height="100" Width="1" Fill="LightGray" Canvas.Bottom="0" Canvas.Left="50" />
         <Rectangle Height="1" Width="100" Fill="LightGray" Canvas.Bottom="50" />
-        <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.SpaceMovement.Length, Converter={StaticResource ScaleConverter}}" 
+        <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.Velocity.Length, Converter={StaticResource ScaleConverter}}" 
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="{Binding Universe.Rocket.FlightDirectionAngle}"/>
@@ -89,8 +89,8 @@
             </Rectangle.RenderTransform>
         </Rectangle>
 
-        <Label Content="{Binding Universe.Rocket.X}" ContentStringFormat="X {0}" Foreground="White"/>
-        <Label Content="{Binding Universe.Rocket.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
+        <Label Content="{Binding Universe.Rocket.Position.X}" ContentStringFormat="X {0}" Foreground="White"/>
+        <Label Content="{Binding Universe.Rocket.Position.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
         <Label Content="{Binding Universe.Rocket.ViewDirectionAngle}" ContentStringFormat="ViewAngle {0}" Foreground="White" Canvas.Top="40"/>
         <Label Content="{Binding Universe.Rocket.FlightDirectionAngle}" ContentStringFormat="FlightAngle {0}" Foreground="White" Canvas.Top="60"/>
         <Label Content="{Binding Universe.Rocket.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>

@@ -18,9 +18,10 @@ namespace TheNewEra
             KeyboardListener = keyboardListener;
 
             MoveableObjects = new ObservableCollection<IMoveableObject>();
-            MoveableObjects.Add(new Meteoroid(1000, 200, 1, VectorUtils.GetScaledVector(8, 180), 50, 75));
-            MoveableObjects.Add(new Meteoroid(800, 150, -2, VectorUtils.GetScaledVector(7, 178), 66, 95));
-            MoveableObjects.Add(new Rocket(200, 200, 50, 89));
+            MoveableObjects.Add(new Meteoroid(new Point(1000, 210), 1, VectorUtils.GetVector(0.8, 180), 50, 75));
+            MoveableObjects.Add(new Meteoroid(new Point(500, 310), 1, VectorUtils.GetVector(0.8, 180), 50, 75));
+            MoveableObjects.Add(new Meteoroid(new Point(700, 010), 1, VectorUtils.GetVector(0.8, 180), 50, 75));
+            MoveableObjects.Add(new Rocket(new Point(200, 200), 50, 89));
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
             Rocket.FuelTankSize = 5000;
@@ -40,7 +41,7 @@ namespace TheNewEra
 
         public Universe()
         {
-            Rocket = new Rocket(200, 200, 50, 89);
+            Rocket = new Rocket(new Point(200, 200), 50, 89);
             Rocket.FuelTankSize = 500;
             Rocket.RemainingFuel = 500;
         }
@@ -61,18 +62,18 @@ namespace TheNewEra
             {
                 foreach (IMoveableObject moveableObject in MoveableObjects)
                 {
-                    Vector xAxis = VectorUtils.GetScaledVector(1, 0);
+                    Vector xAxis = VectorUtils.GetVector(1, 0);
                     Vector navigatorCenter = new Vector(50, 50);
-                    Vector rocketPosition = Vector.Subtract(new Vector(Rocket.X, Rocket.Y), navigatorCenter);
+                    Vector rocketPosition = Vector.Subtract(new Vector(Rocket.Position.X, Rocket.Position.Y), navigatorCenter);
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
                     Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
 
                     moveableObject.ViewDirectionAngle += moveableObject.RotationSpeed;
-                    moveableObject.ThrustMovement = VectorUtils.GetScaledVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
+                    moveableObject.ThrustMovement = VectorUtils.GetVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
 
-                    moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
+                    moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.Velocity, xAxis);
 
-                    moveableObject.SpaceMovement = Vector.Add(moveableObject.SpaceMovement, moveableObject.ThrustMovement);
+                    moveableObject.Velocity = Vector.Add(moveableObject.Velocity, moveableObject.ThrustMovement);
                 }
 
                 for (int i = 0; i < MoveableObjects.Count; i++)
@@ -111,8 +112,11 @@ namespace TheNewEra
         {
             foreach (IMoveableObject moveableObject in MoveableObjects)
             {
-                moveableObject.X += moveableObject.SpaceMovement.X;
-                moveableObject.Y -= moveableObject.SpaceMovement.Y;
+                moveableObject.Position = new Point
+                    {
+                        X = moveableObject.Position.X + moveableObject.Velocity.X,
+                        Y = moveableObject.Position.Y - moveableObject.Velocity.Y
+                    };
                 moveableObject.Update();
             }
         }

@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Windows;
+using FluentAssertions;
 using NUnit.Framework;
 using TheNewEra;
 
@@ -10,12 +11,11 @@ namespace TheNewEraTest
         [SetUp]
         public void SetUp()
         {
-            _testee = new Rocket(X, Y, Height, Width);
+            _testee = new Rocket(_position, Height, Width);
         }
 
         private Rocket _testee;
-        private const double X = 200;
-        private const double Y = 200;
+        private readonly Point _position = new Point(200, 200);
         private const int Height = 50;
         private const int Width = 89;
 

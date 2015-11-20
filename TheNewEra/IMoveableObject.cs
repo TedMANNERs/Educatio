@@ -4,17 +4,16 @@ namespace TheNewEra
 {
     public interface IMoveableObject
     {
-        double X { get; set; }
-        double Y { get; set; }
+        Point Position { get; set; }
         int Height { get; set; }
         int Width { get; set; }
-        double CenterX { get; }
-        double CenterY { get; }
+        Point RelativeCenter { get; }
+        Vector Center { get; }
         string Sprite { get; set; }
         double Thrust { get; set; }
         double RotationSpeed { get; set; }
         Vector ThrustMovement { get; set; }
-        Vector SpaceMovement { get; set; }
+        Vector Velocity { get; set; }
         double FlightDirectionAngle { get; set; }
         double ViewDirectionAngle { get; set; }
         double CollisionRadius { get; set; }

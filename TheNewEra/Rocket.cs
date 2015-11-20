@@ -132,6 +132,7 @@ namespace TheNewEra
         }
 
         public double CollisionRadius { get; set; }
+        public double Mass { get; set; }
 
         public void Update()
         {

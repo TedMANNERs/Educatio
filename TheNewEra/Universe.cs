@@ -82,22 +82,14 @@ namespace TheNewEra
                     IEnumerable<IMoveableObject> remainingObjects = MoveableObjects.Skip(i + 1);
                     foreach (IMoveableObject objectB in remainingObjects)
                     {
-                        Point centerA = new Point(objectA.X + objectA.CenterX, objectA.Y + objectA.CenterY);
-                        Point centerB = new Point(objectB.X + objectB.CenterX, objectB.Y + objectB.CenterY);
-
-                        double distanceX = centerA.X - centerB.X;
-                        double distanceY = centerA.Y - centerB.Y;
-                        double distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+                        double distance = VectorUtils.GetDistance(objectA, objectB);
 
                         if (distance < objectA.CollisionRadius + objectB.CollisionRadius)
                         {
-                            double velocityX = objectB.SpaceMovement.X - objectA.SpaceMovement.X;
-                            double velocityY = objectB.SpaceMovement.Y - objectA.SpaceMovement.Y;
-                            double dotProduct = distanceX * velocityX + distanceY * velocityY;
-
-                            if (dotProduct > 0)
-                            {
-                            }
+                            Vector resultingVelocityA = GetResultingVelocityFromCollision(objectA, objectB);
+                            Vector resultingVelocityB = GetResultingVelocityFromCollision(objectB, objectA);
+                            objectA.Velocity = resultingVelocityA;
+                            objectB.Velocity = resultingVelocityB;
                         }
                     }
                 }
@@ -106,6 +98,19 @@ namespace TheNewEra
 
                 Thread.Sleep(30);
             }
+        }
+
+        private Vector GetResultingVelocityFromCollision(IMoveableObject o1, IMoveableObject o2)
+        {
+            double mass = (2 * o2.Mass) / (o1.Mass + o2.Mass);
+            double magnitude = Math.Pow(Vector.Subtract(o2.Center, o1.Center).Length, 2);
+            Vector distance = Vector.Subtract(o1.Center, o2.Center);
+            double dotProduct = Vector.Multiply(
+                                                Vector.Subtract(o1.Velocity, o2.Velocity),
+                                                distance);
+            Vector productTerm2 = Vector.Multiply(mass * dotProduct / magnitude, distance);
+            Vector result = Vector.Subtract(o1.Velocity, productTerm2);
+            return result;
         }
 
         private void UpdateObjects()

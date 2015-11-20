@@ -17,6 +17,7 @@ namespace TheNewEra
         double FlightDirectionAngle { get; set; }
         double ViewDirectionAngle { get; set; }
         double CollisionRadius { get; set; }
+        double Mass { get; set; }
 
         void Update();
     }

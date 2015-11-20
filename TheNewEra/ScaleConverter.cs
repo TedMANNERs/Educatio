@@ -5,7 +5,7 @@ using System.Windows.Data;
 
 namespace TheNewEra
 {
-    public class VectorConverter : IValueConverter
+    public class ScaleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

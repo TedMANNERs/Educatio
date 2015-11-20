@@ -1,20 +1,20 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using TheNewEra.Annotations;
+using TheNewEra.Properties;
 
 namespace TheNewEra
 {
     public class Rocket : INotifyPropertyChanged, IMoveableObject
     {
-        private double _thrust;
-        private Vector _thrustMovement;
         private double _flightDirectionAngle;
         private int _imageId = 1;
         private double _positionAngle;
         private int _remainingFuel;
         private Vector _spaceMovement;
         private string _sprite;
+        private double _thrust;
+        private Vector _thrustMovement;
         private double _viewDirectionAngle;
         private double _x;
         private double _y;
@@ -28,6 +28,7 @@ namespace TheNewEra
             CenterX = Width / 2.0;
             CenterY = Height / 2.0;
             Sprite = "Resources/Images/rocket1.png";
+            CollisionRadius = Height > Width ? Height / 3 : Width / 3;
         }
 
         public static int FuelTankSize { get; set; }
@@ -138,6 +139,8 @@ namespace TheNewEra
                 OnPropertyChanged();
             }
         }
+
+        public double CollisionRadius { get; set; }
 
         public void Update()
         {

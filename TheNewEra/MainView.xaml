@@ -12,7 +12,7 @@
     </Window.DataContext>
     <Window.Resources>
         <local:FuelConverter x:Key="FuelConverter"/>
-        <local:VectorConverter x:Key="VectorConverter" />
+        <local:ScaleConverter x:Key="ScaleConverter" />
     </Window.Resources>
     <Canvas>
         <Canvas.Background>
@@ -37,11 +37,16 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Sprite}" Height="{Binding Height}" Width="{Binding Width}" Stretch="Fill">
-                        <Image.RenderTransform>
-                            <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="{Binding CenterX}" CenterY="{Binding CenterY}"/>
-                        </Image.RenderTransform>
-                    </Image>
+                    <Grid>
+                        <Image Source="{Binding Sprite}" Height="{Binding Height}" Width="{Binding Width}" Stretch="Fill">
+                            <Image.RenderTransform>
+                                <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="{Binding CenterX}" CenterY="{Binding CenterY}"/>
+                            </Image.RenderTransform>
+                        </Image>
+                        <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                 Height="{Binding CollisionRadius, Converter={StaticResource ScaleConverter}}" 
+                                 Width="{Binding CollisionRadius, Converter={StaticResource ScaleConverter}}" Fill="#E0FFFFFF"/>
+                    </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
@@ -59,13 +64,13 @@
 
         <Rectangle Height="100" Width="1" Fill="LightGray" Canvas.Bottom="0" Canvas.Left="50" />
         <Rectangle Height="1" Width="100" Fill="LightGray" Canvas.Bottom="50" />
-        <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.SpaceMovement.Length, Converter={StaticResource VectorConverter}}" 
+        <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.SpaceMovement.Length, Converter={StaticResource ScaleConverter}}" 
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="{Binding Universe.Rocket.FlightDirectionAngle}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Height="2" Fill=" Yellow" Width="{Binding Universe.Rocket.ThrustMovement.Length, Converter={StaticResource VectorConverter}}"
+        <Rectangle Height="2" Fill=" Yellow" Width="{Binding Universe.Rocket.ThrustMovement.Length, Converter={StaticResource ScaleConverter}}"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
                 <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle}"/>

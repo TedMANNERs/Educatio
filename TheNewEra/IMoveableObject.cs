@@ -17,6 +17,7 @@ namespace TheNewEra
         Vector SpaceMovement { get; set; }
         double FlightDirectionAngle { get; set; }
         double ViewDirectionAngle { get; set; }
+        double CollisionRadius { get; set; }
 
         void Update();
     }

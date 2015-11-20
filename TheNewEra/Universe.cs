@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -47,6 +49,12 @@ namespace TheNewEra
         public Rocket Rocket { get; set; }
         public KeyboardListener KeyboardListener { get; private set; }
 
+        public void Stop()
+        {
+            _isRunning = false;
+            KeyboardListener.Stop();
+        }
+
         private void Loop()
         {
             while (_isRunning)
@@ -65,21 +73,48 @@ namespace TheNewEra
                     moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.SpaceMovement, xAxis);
 
                     moveableObject.SpaceMovement = Vector.Add(moveableObject.SpaceMovement, moveableObject.ThrustMovement);
-
-                    moveableObject.X += moveableObject.SpaceMovement.X;
-                    moveableObject.Y -= moveableObject.SpaceMovement.Y;
-
-                    moveableObject.Update();
                 }
+
+                for (int i = 0; i < MoveableObjects.Count; i++)
+                {
+                    IMoveableObject objectA = MoveableObjects[i];
+                    IEnumerable<IMoveableObject> remainingObjects = MoveableObjects.Skip(i + 1);
+                    foreach (IMoveableObject objectB in remainingObjects)
+                    {
+                        Point centerA = new Point(objectA.X + objectA.CenterX, objectA.Y + objectA.CenterY);
+                        Point centerB = new Point(objectB.X + objectB.CenterX, objectB.Y + objectB.CenterY);
+
+                        double distanceX = centerA.X - centerB.X;
+                        double distanceY = centerA.Y - centerB.Y;
+                        double distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
+
+                        if (distance < objectA.CollisionRadius + objectB.CollisionRadius)
+                        {
+                            double velocityX = objectB.SpaceMovement.X - objectA.SpaceMovement.X;
+                            double velocityY = objectB.SpaceMovement.Y - objectA.SpaceMovement.Y;
+                            double dotProduct = distanceX * velocityX + distanceY * velocityY;
+
+                            if (dotProduct > 0)
+                            {
+                            }
+                        }
+                    }
+                }
+
+                UpdateObjects();
 
                 Thread.Sleep(30);
             }
         }
 
-        public void Stop()
+        private void UpdateObjects()
         {
-            _isRunning = false;
-            KeyboardListener.Stop();
+            foreach (IMoveableObject moveableObject in MoveableObjects)
+            {
+                moveableObject.X += moveableObject.SpaceMovement.X;
+                moveableObject.Y -= moveableObject.SpaceMovement.Y;
+                moveableObject.Update();
+            }
         }
     }
 }

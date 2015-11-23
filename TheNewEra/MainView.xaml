@@ -13,6 +13,7 @@
     <Window.Resources>
         <local:FuelConverter x:Key="FuelConverter"/>
         <local:ScaleConverter x:Key="ScaleConverter" />
+        <local:AngleConverter x:Key="AngleConverter" />
     </Window.Resources>
     <Canvas>
         <Canvas.Background>
@@ -40,12 +41,13 @@
                     <Grid>
                         <Image Source="{Binding Sprite}" Height="{Binding Height}" Width="{Binding Width}" Stretch="Fill">
                             <Image.RenderTransform>
-                                <RotateTransform Angle="{Binding ViewDirectionAngle}" CenterX="{Binding RelativeCenter.X}" CenterY="{Binding RelativeCenter.Y}"/>
+                                <RotateTransform Angle="{Binding ViewDirectionAngle, Converter={StaticResource AngleConverter}}" 
+                                                 CenterX="{Binding RelativeCenter.X}" CenterY="{Binding RelativeCenter.Y}"/>
                             </Image.RenderTransform>
                         </Image>
                         <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" 
                                  Height="{Binding CollisionRadius, Converter={StaticResource ScaleConverter}}" 
-                                 Width="{Binding CollisionRadius, Converter={StaticResource ScaleConverter}}" Fill="#E0FFFFFF"/>
+                                 Width="{Binding CollisionRadius, Converter={StaticResource ScaleConverter}}" Fill="#50FFFFFF"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -58,44 +60,44 @@
         </ItemsControl>
 
         <Rectangle Height="5" Fill="Red" Width="{Binding Universe.Rocket.FuelTankSize, Converter={StaticResource FuelConverter}}"
-                   Canvas.Left="{Binding Universe.Rocket.X}" Canvas.Bottom="{Binding Universe.Rocket.Y}" Margin="-20,-20,0,0"/>
+                   Canvas.Left="{Binding Universe.Rocket.TranslatedPosition.X}" Canvas.Bottom="{Binding Universe.Rocket.TranslatedPosition.Y}" Margin="-20,-20,0,0"/>
         <Rectangle Height="5" Fill="Green" Width="{Binding Universe.Rocket.RemainingFuel, Converter={StaticResource FuelConverter}}"
-                   Canvas.Left="{Binding Universe.Rocket.X}" Canvas.Bottom="{Binding Universe.Rocket.Y}" Margin="-20,-20,0,0"/>
+                   Canvas.Left="{Binding Universe.Rocket.TranslatedPosition.X}" Canvas.Bottom="{Binding Universe.Rocket.TranslatedPosition.Y}" Margin="-20,-20,0,0"/>
 
         <Rectangle Height="100" Width="1" Fill="LightGray" Canvas.Bottom="0" Canvas.Left="50" />
         <Rectangle Height="1" Width="100" Fill="LightGray" Canvas.Bottom="50" />
         <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.Velocity.Length, Converter={StaticResource ScaleConverter}}" 
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.FlightDirectionAngle}"/>
+                <RotateTransform Angle="{Binding Universe.Rocket.FlightDirectionAngle, Converter={StaticResource AngleConverter}}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Height="2" Fill=" Yellow" Width="{Binding Universe.Rocket.ThrustMovement.Length, Converter={StaticResource ScaleConverter}}"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle}"/>
+                <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle, Converter={StaticResource AngleConverter}}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Height="1" Fill="White" Width="50"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle}"/>
+                <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle, Converter={StaticResource AngleConverter}}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
         <Rectangle Height="1" Fill="Orange" Width="50"
                    Canvas.Bottom="50" Canvas.Left="50">
             <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.PositionAngle}"/>
+                <RotateTransform Angle="{Binding Universe.Rocket.PositionAngle, Converter={StaticResource AngleConverter}}"/>
             </Rectangle.RenderTransform>
         </Rectangle>
 
         <Label Content="{Binding Universe.Rocket.Position.X}" ContentStringFormat="X {0}" Foreground="White"/>
         <Label Content="{Binding Universe.Rocket.Position.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
-        <Label Content="{Binding Universe.Rocket.ViewDirectionAngle}" ContentStringFormat="ViewAngle {0}" Foreground="White" Canvas.Top="40"/>
-        <Label Content="{Binding Universe.Rocket.FlightDirectionAngle}" ContentStringFormat="FlightAngle {0}" Foreground="White" Canvas.Top="60"/>
+        <Label Content="{Binding Universe.Rocket.ViewDirectionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="ViewAngle {0}" Foreground="White" Canvas.Top="40"/>
+        <Label Content="{Binding Universe.Rocket.FlightDirectionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="FlightAngle {0}" Foreground="White" Canvas.Top="60"/>
         <Label Content="{Binding Universe.Rocket.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>
         <Label Content="{Binding Universe.Rocket.ThrustMovement.Length}" ContentStringFormat="ThrustMovement {0}" Foreground="White" Canvas.Top="100"/>
         <Label Content="{Binding Universe.Rocket.Thrust}" ContentStringFormat="Thrust {0}" Foreground="White" Canvas.Top="120"/>
-        <Label Content="{Binding Universe.Rocket.PositionAngle}" ContentStringFormat="PositionAngle {0}" Foreground="White" Canvas.Top="140"/>
+        <Label Content="{Binding Universe.Rocket.PositionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="PositionAngle {0}" Foreground="White" Canvas.Top="140"/>
     </Canvas>
 </Window>

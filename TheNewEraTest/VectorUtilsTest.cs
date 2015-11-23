@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using FluentAssertions;
 using NUnit.Framework;
 using TheNewEra;
@@ -13,7 +14,7 @@ namespace TheNewEraTest
         {
             // arrange
             const double Length = 5.5;
-            const double Angle = 45.0;
+            const double Angle = Math.PI / 4;
             const double ExpectedX = 3.8891;
             const double ExpectedY = 3.8891;
 

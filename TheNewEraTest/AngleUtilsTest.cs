@@ -12,8 +12,8 @@ namespace TheNewEraTest
         public void LimitAngle_WhenGreaterThan360_ThenReturnsCorrectAngle()
         {
             // arrange
-            const double Angle = 370.0;
-            const double ExpectedAngle = 10.0;
+            const double Angle = 3 * Math.PI;
+            const double ExpectedAngle = Math.PI;
 
             // act
             double result = AngleUtils.LimitAngle(Angle);
@@ -26,8 +26,8 @@ namespace TheNewEraTest
         public void LimitAngle_WhenLessThanZero_ThenReturnsCorrectAngle()
         {
             // arrange
-            const double Angle = -10.0;
-            const double ExpectedAngle = 350.0;
+            const double Angle = -Math.PI / 2;
+            const double ExpectedAngle = Math.PI * 1.5;
 
             // act
             double result = AngleUtils.LimitAngle(Angle);
@@ -40,8 +40,8 @@ namespace TheNewEraTest
         public void LimitAngle_WhenLimitAngle_ThenReturnsSameAngle()
         {
             // arrange
-            const double Angle = 240.0;
-            const double ExpectedAngle = 240.0;
+            const double Angle = Math.PI * 1.5;
+            const double ExpectedAngle = Math.PI * 1.5;
 
             // act
             double result = AngleUtils.LimitAngle(Angle);

@@ -167,7 +167,7 @@ namespace TheNewEra
         {
             if (RemainingFuel > 0)
             {
-                RotationSpeed -= 0.2;
+                RotationSpeed -= AngleUtils.ConvertToRadians(0.2);
                 RemainingFuel--;
             }
         }
@@ -188,7 +188,7 @@ namespace TheNewEra
         {
             if (RemainingFuel > 0)
             {
-                RotationSpeed += 0.2;
+                RotationSpeed += AngleUtils.ConvertToRadians(0.2);
                 RemainingFuel--;
             }
         }

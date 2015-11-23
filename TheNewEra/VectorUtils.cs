@@ -7,8 +7,8 @@ namespace TheNewEra
     {
         public static Vector GetVector(double length, double angle)
         {
-            double cos = Math.Cos(AngleUtils.ConvertToRadians(angle));
-            double sin = Math.Sin(AngleUtils.ConvertToRadians(angle));
+            double cos = Math.Cos(angle);
+            double sin = Math.Sin(angle);
             double x = length * cos;
             double y = length * sin;
             return new Vector(x, y);

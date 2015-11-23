@@ -18,7 +18,7 @@ namespace TheNewEra
         public Meteoroid(Vector position, int rotationSpeed, Vector movement, int height, int width)
         {
             Position = position;
-            RotationSpeed = rotationSpeed;
+            RotationSpeed = AngleUtils.ConvertToRadians(rotationSpeed);
             Velocity = movement;
             Height = height;
             Width = width;

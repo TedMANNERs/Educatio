@@ -18,12 +18,12 @@ namespace TheNewEra
             KeyboardListener = keyboardListener;
 
             MoveableObjects = new ObservableCollection<IMoveableObject>();
-            MoveableObjects.Add(new Meteoroid(new Vector(800, 210), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 500 });
-            MoveableObjects.Add(new Meteoroid(new Vector(600, 210), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 500 });
-            MoveableObjects.Add(new Meteoroid(new Vector(500, 310), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 800 });
-            MoveableObjects.Add(new Meteoroid(new Vector(500, 250), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 800 });
-            MoveableObjects.Add(new Meteoroid(new Vector(400, 160), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 800 });
-            MoveableObjects.Add(new Meteoroid(new Vector(700, 150), 1, VectorUtils.GetVector(0.8, 180), 50, 75) {Mass = 500});
+            MoveableObjects.Add(new Meteoroid(new Vector(800, 200), 1, VectorUtils.GetVector(0.8, Math.PI), 50, 75) { Mass = 500 });
+            MoveableObjects.Add(new Meteoroid(new Vector(600, 210), 1, VectorUtils.GetVector(0.8, Math.PI), 50, 75) { Mass = 500 });
+            MoveableObjects.Add(new Meteoroid(new Vector(500, 310), 1, VectorUtils.GetVector(0.8, Math.PI), 50, 75) { Mass = 800 });
+            MoveableObjects.Add(new Meteoroid(new Vector(500, 250), 1, VectorUtils.GetVector(0.8, Math.PI), 50, 75) { Mass = 600 });
+            MoveableObjects.Add(new Meteoroid(new Vector(400, 160), 1, VectorUtils.GetVector(0.8, Math.PI), 50, 75) { Mass = 800 });
+            MoveableObjects.Add(new Meteoroid(new Vector(700, 150), 1, VectorUtils.GetVector(0.8, Math.PI), 50, 75) { Mass = 400 });
             MoveableObjects.Add(new Rocket(new Vector(200, 200), 50, 89) {Mass = 200});
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
@@ -69,12 +69,12 @@ namespace TheNewEra
                     Vector navigatorCenter = new Vector(50, 50);
                     Vector rocketPosition = Vector.Subtract(new Vector(Rocket.Position.X, Rocket.Position.Y), navigatorCenter);
                     Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
-                    Rocket.PositionAngle = Vector.AngleBetween(rocketPosition, navigatorXAxis);
+                    Rocket.PositionAngle = AngleUtils.ConvertToRadians(Vector.AngleBetween(rocketPosition, navigatorXAxis));
 
                     moveableObject.ViewDirectionAngle += moveableObject.RotationSpeed;
                     moveableObject.ThrustMovement = VectorUtils.GetVector(moveableObject.Thrust, moveableObject.ViewDirectionAngle);
 
-                    moveableObject.FlightDirectionAngle = 360 - Vector.AngleBetween(moveableObject.Velocity, xAxis);
+                    moveableObject.FlightDirectionAngle = 2 * Math.PI - AngleUtils.ConvertToRadians(Vector.AngleBetween(moveableObject.Velocity, xAxis));
 
                     moveableObject.Velocity = Vector.Add(moveableObject.Velocity, moveableObject.ThrustMovement);
                 }

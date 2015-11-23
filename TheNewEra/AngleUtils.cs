@@ -7,9 +7,9 @@ namespace TheNewEra
         public static double LimitAngle(double angle)
         {
             if (angle < 0)
-                return 360 + angle;
-            if (angle > 360)
-                return angle - 360;
+                return 2 * Math.PI + angle;
+            if (angle > 2 * Math.PI)
+                return angle - 2 * Math.PI;
             return angle;
         }
 
@@ -27,8 +27,7 @@ namespace TheNewEra
         {
             double distance = VectorUtils.GetDistance(objectA, objectB);
             double distanceY = objectA.Position.Y - objectB.Position.Y;
-            double angle = Math.Asin(distanceY / distance);
-            return ConvertToDegrees(angle);
+            return Math.Asin(distanceY / distance);
         }
     }
 }

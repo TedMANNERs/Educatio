@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AngleConverter.cs" />
     <Compile Include="AngleUtils.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="IKeyboardListener.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="KeyboardListener.cs" />
     <Compile Include="MainViewModelDesignData.cs" />
     <Compile Include="Meteoroid.cs" />
+    <Compile Include="MoveableObjectBase.cs" />
     <Compile Include="Rocket.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="FuelConverter.cs" />

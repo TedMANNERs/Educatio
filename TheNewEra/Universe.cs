@@ -18,10 +18,13 @@ namespace TheNewEra
             KeyboardListener = keyboardListener;
 
             MoveableObjects = new ObservableCollection<IMoveableObject>();
-            MoveableObjects.Add(new Meteoroid(new Point(1000, 210), 1, VectorUtils.GetVector(0.8, 180), 50, 75));
-            MoveableObjects.Add(new Meteoroid(new Point(500, 310), 1, VectorUtils.GetVector(0.8, 180), 50, 75));
-            MoveableObjects.Add(new Meteoroid(new Point(700, 010), 1, VectorUtils.GetVector(0.8, 180), 50, 75));
-            MoveableObjects.Add(new Rocket(new Point(200, 200), 50, 89));
+            MoveableObjects.Add(new Meteoroid(new Vector(800, 210), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 500 });
+            MoveableObjects.Add(new Meteoroid(new Vector(600, 210), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 500 });
+            MoveableObjects.Add(new Meteoroid(new Vector(500, 310), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 800 });
+            MoveableObjects.Add(new Meteoroid(new Vector(500, 250), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 800 });
+            MoveableObjects.Add(new Meteoroid(new Vector(400, 160), 1, VectorUtils.GetVector(0.8, 180), 50, 75) { Mass = 800 });
+            MoveableObjects.Add(new Meteoroid(new Vector(700, 150), 1, VectorUtils.GetVector(0.8, 180), 50, 75) {Mass = 500});
+            MoveableObjects.Add(new Rocket(new Vector(200, 200), 50, 89) {Mass = 200});
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
             Rocket.FuelTankSize = 5000;
@@ -41,7 +44,7 @@ namespace TheNewEra
 
         public Universe()
         {
-            Rocket = new Rocket(new Point(200, 200), 50, 89);
+            Rocket = new Rocket(new Vector(200, 200), 50, 89);
             Rocket.FuelTankSize = 500;
             Rocket.RemainingFuel = 500;
         }
@@ -100,16 +103,16 @@ namespace TheNewEra
             }
         }
 
-        private Vector GetResultingVelocityFromCollision(IMoveableObject o1, IMoveableObject o2)
+        private Vector GetResultingVelocityFromCollision(IMoveableObject objectA, IMoveableObject objectB)
         {
-            double mass = (2 * o2.Mass) / (o1.Mass + o2.Mass);
-            double magnitude = Math.Pow(Vector.Subtract(o2.Center, o1.Center).Length, 2);
-            Vector distance = Vector.Subtract(o1.Center, o2.Center);
+            double mass = (2 * objectB.Mass) / (objectA.Mass + objectB.Mass);
+            double magnitude = Math.Pow(Vector.Subtract(objectB.Position, objectA.Position).Length, 2);
+            Vector distance = Vector.Subtract(objectA.Position, objectB.Position);
             double dotProduct = Vector.Multiply(
-                                                Vector.Subtract(o1.Velocity, o2.Velocity),
+                                                Vector.Subtract(objectA.Velocity, objectB.Velocity),
                                                 distance);
             Vector productTerm2 = Vector.Multiply(mass * dotProduct / magnitude, distance);
-            Vector result = Vector.Subtract(o1.Velocity, productTerm2);
+            Vector result = Vector.Subtract(objectA.Velocity, productTerm2);
             return result;
         }
 
@@ -117,7 +120,7 @@ namespace TheNewEra
         {
             foreach (IMoveableObject moveableObject in MoveableObjects)
             {
-                moveableObject.Position = new Point
+                moveableObject.Position = new Vector
                     {
                         X = moveableObject.Position.X + moveableObject.Velocity.X,
                         Y = moveableObject.Position.Y - moveableObject.Velocity.Y

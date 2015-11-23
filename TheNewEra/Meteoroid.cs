@@ -8,14 +8,14 @@ namespace TheNewEra
     public class Meteoroid : INotifyPropertyChanged, IMoveableObject
     {
         private double _flightDirectionAngle;
-        private Vector _velocity;
+        private Vector _position;
         private string _sprite;
         private double _thrust;
         private Vector _thrustMovement;
+        private Vector _velocity;
         private double _viewDirectionAngle;
-        private Point _position;
 
-        public Meteoroid(Point position, int rotationSpeed, Vector movement, int height, int width)
+        public Meteoroid(Vector position, int rotationSpeed, Vector movement, int height, int width)
         {
             Position = position;
             RotationSpeed = rotationSpeed;
@@ -27,23 +27,31 @@ namespace TheNewEra
             CollisionRadius = Height > Width ? Height / 3 : Width / 3;
         }
 
-        public Point Position
+        public Meteoroid(Vector position, int height, int width)
         {
-            get { return _position; }
-            set
-            {
-                _position = value; 
-                OnPropertyChanged();
-            }
+            Position = position;
+            Height = height;
+            Width = width;
+        }
+
+        public Vector TranslatedPosition
+        {
+            get { return new Vector(Position.X - RelativeCenter.X, Position.Y - RelativeCenter.Y); }
         }
 
         public int Height { get; set; }
         public int Width { get; set; }
         public Point RelativeCenter { get; private set; }
 
-        public Vector Center
+        public Vector Position
         {
-            get { return new Vector(Position.X + RelativeCenter.X, Position.Y + RelativeCenter.Y); }
+            get { return _position; }
+            set
+            {
+                _position = value;
+                OnPropertyChanged();
+                OnPropertyChanged("TranslatedPosition");
+            }
         }
 
         public string Sprite

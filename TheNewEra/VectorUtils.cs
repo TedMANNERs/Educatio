@@ -13,10 +13,11 @@ namespace TheNewEra
             double y = length * sin;
             return new Vector(x, y);
         }
+
         public static double GetDistance(IMoveableObject objectA, IMoveableObject objectB)
         {
-            double distanceX = objectA.Center.X - objectB.Center.X;
-            double distanceY = objectA.Center.Y - objectB.Center.Y;
+            double distanceX = objectA.Position.X - objectB.Position.X;
+            double distanceY = objectA.Position.Y - objectB.Position.Y;
             double distance = Math.Sqrt(distanceX * distanceX + distanceY * distanceY);
             return distance;
         }

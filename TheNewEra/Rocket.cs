@@ -16,9 +16,9 @@ namespace TheNewEra
         private double _thrust;
         private Vector _thrustMovement;
         private double _viewDirectionAngle;
-        private Point _position;
+        private Vector _position;
 
-        public Rocket(Point position, int height, int width)
+        public Rocket(Vector position, int height, int width)
         {
             Height = height;
             Width = width;
@@ -50,19 +50,20 @@ namespace TheNewEra
             }
         }
 
-        public Point Position
+        public Vector TranslatedPosition
+        {
+            get { return new Vector(Position.X - RelativeCenter.X, Position.Y - RelativeCenter.Y); }
+        }
+
+        public Vector Position
         {
             get { return _position; }
             set
             {
-                _position = value; 
+                _position = value;
                 OnPropertyChanged();
+                OnPropertyChanged("TranslatedPosition");
             }
-        }
-
-        public Vector Center
-        {
-            get { return new Vector(Position.X + RelativeCenter.X, Position.Y + RelativeCenter.Y); }
         }
 
         public int Height { get; set; }
@@ -199,7 +200,7 @@ namespace TheNewEra
             RemainingFuel = FuelTankSize;
             ViewDirectionAngle = 0;
             RotationSpeed = 0;
-            Position = new Point(200, 200);
+            Position = new Vector(200, 200);
         }
 
         public void PressedT()

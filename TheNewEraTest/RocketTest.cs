@@ -15,7 +15,7 @@ namespace TheNewEraTest
         }
 
         private Rocket _testee;
-        private readonly Point _position = new Point(200, 200);
+        private readonly Vector _position = new Vector(200, 200);
         private const int Height = 50;
         private const int Width = 89;
 

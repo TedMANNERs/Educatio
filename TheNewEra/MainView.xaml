@@ -51,8 +51,8 @@
             </ItemsControl.ItemTemplate>
             <ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
-                    <Setter Property="Canvas.Left" Value="{Binding Position.X}" />
-                    <Setter Property="Canvas.Bottom" Value="{Binding Position.Y}" />
+                    <Setter Property="Canvas.Left" Value="{Binding TranslatedPosition.X}" />
+                    <Setter Property="Canvas.Bottom" Value="{Binding TranslatedPosition.Y}" />
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>

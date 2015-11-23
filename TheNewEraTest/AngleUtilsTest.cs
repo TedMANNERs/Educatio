@@ -63,5 +63,19 @@ namespace TheNewEraTest
             // assert
             result.Should().Be(ExpectedAngle);
         }
+
+        [Test]
+        public void ConvertToDegrees_WhenConvertToDegrees_ThenReturnAngleInDegrees()
+        {
+            // arrange
+            const double Angle = Math.PI;
+            const double ExpectedAngle = 180;
+
+            // act
+            double result = AngleUtils.ConvertToDegrees(Angle);
+
+            // assert
+            result.Should().Be(ExpectedAngle);
+        }
     }
 }

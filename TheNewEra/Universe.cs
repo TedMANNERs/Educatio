@@ -89,6 +89,14 @@ namespace TheNewEra
 
                         if (distance < objectA.CollisionRadius + objectB.CollisionRadius)
                         {
+                            double smallerRadius = Math.Min(objectA.CollisionRadius, objectB.CollisionRadius);
+                            double largerRadius = Math.Max(objectA.CollisionRadius, objectB.CollisionRadius);
+                            double intersection = smallerRadius - (distance - largerRadius);
+                            double angle = AngleUtils.GetAngle(objectA, objectB);
+                            Vector offset = VectorUtils.GetVector(intersection / 2.0, angle);
+                            objectA.Position = Vector.Add(objectA.Position, offset);
+                            objectB.Position = Vector.Subtract(objectB.Position, offset);
+
                             Vector resultingVelocityA = GetResultingVelocityFromCollision(objectA, objectB);
                             Vector resultingVelocityB = GetResultingVelocityFromCollision(objectB, objectA);
                             objectA.Velocity = resultingVelocityA;

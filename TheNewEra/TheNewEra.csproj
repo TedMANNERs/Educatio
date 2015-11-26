@@ -62,11 +62,13 @@
     <Compile Include="IKeyboardListener.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="IMoveableObject.cs" />
+    <Compile Include="IPhysicsEngine.cs" />
     <Compile Include="IUniverse.cs" />
     <Compile Include="KeyboardListener.cs" />
     <Compile Include="MainViewModelDesignData.cs" />
     <Compile Include="Meteoroid.cs" />
     <Compile Include="MoveableObjectBase.cs" />
+    <Compile Include="PhysicsEngine.cs" />
     <Compile Include="Rocket.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="FuelConverter.cs" />

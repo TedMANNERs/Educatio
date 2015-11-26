@@ -7,6 +7,7 @@ namespace TheNewEra
         ObservableCollection<IMoveableObject> MoveableObjects { get; set; }
         Rocket Rocket { get; set; }
         KeyboardListener KeyboardListener { get; }
+        IPhysicsEngine PhysicsEngine { get; set; }
 
         void Stop();
     }

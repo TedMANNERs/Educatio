@@ -6,7 +6,7 @@ namespace TheNewEra
     {
         public MainViewModel()
         {
-            Universe = new Universe(new KeyboardListener());
+            Universe = new Universe(new KeyboardListener(), new PhysicsEngine());
         }
 
         public Universe Universe { get; set; }

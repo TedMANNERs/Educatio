@@ -56,6 +56,11 @@ namespace TheNewEra
                 _imageId++;
                 RemainingFuel--;
             }
+
+            Vector navigatorCenter = new Vector(50, 50);
+            Vector rocketPosition = Vector.Subtract(new Vector(Position.X, Position.Y), navigatorCenter);
+            Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
+            PositionAngle = AngleUtils.ConvertToRadians(Vector.AngleBetween(rocketPosition, navigatorXAxis));
         }
 
         public void IncreaseThrust()

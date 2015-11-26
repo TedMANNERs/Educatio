@@ -14,7 +14,7 @@ namespace TheNewEra
         private Vector _thrustMovement;
         private Vector _velocity;
         private double _viewDirectionAngle;
-        private Matrix _yInversionMatrix;
+        private readonly Matrix _yInversionMatrix;
 
         protected MoveableObjectBase()
         {

@@ -11,7 +11,7 @@ namespace TheNewEraTest
         [SetUp]
         public void SetUp()
         {
-            _testee = new Rocket(_position, Height, Width);
+            _testee = new Rocket(_position, Height, Width) { FuelTank = new FuelTank(0)};
         }
 
         private Rocket _testee;
@@ -53,7 +53,7 @@ namespace TheNewEraTest
         {
             // arrange
             const double Thrust = 0;
-            _testee.RemainingFuel = 100;
+            _testee.FuelTank.RemainingFuel = 100;
             _testee.Thrust = Thrust;
 
             // act
@@ -68,7 +68,7 @@ namespace TheNewEraTest
         {
             // arrange
             const double RotationThrust = 0;
-            _testee.RemainingFuel = 100;
+            _testee.FuelTank.RemainingFuel = 100;
             _testee.RotationSpeed = RotationThrust;
 
             // act
@@ -83,7 +83,7 @@ namespace TheNewEraTest
         {
             // arrange
             const double RotationThrust = 0;
-            _testee.RemainingFuel = 100;
+            _testee.FuelTank.RemainingFuel = 100;
             _testee.RotationSpeed = RotationThrust;
 
             // act

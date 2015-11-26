@@ -17,18 +17,18 @@ namespace TheNewEra
             KeyboardListener = keyboardListener;
             PhysicsEngine = physicsEngine;
 
-            MoveableObjects = new ObservableCollection<IMoveableObject>();
-            MoveableObjects.Add(new Meteoroid(new Vector(800, 200), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 500 });
-            MoveableObjects.Add(new Meteoroid(new Vector(600, 210), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 500 });
-            MoveableObjects.Add(new Meteoroid(new Vector(500, 310), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 800 });
-            MoveableObjects.Add(new Meteoroid(new Vector(500, 250), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 600 });
-            MoveableObjects.Add(new Meteoroid(new Vector(400, 160), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 800 });
-            MoveableObjects.Add(new Meteoroid(new Vector(700, 150), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 400 });
-            MoveableObjects.Add(new Rocket(new Vector(200, 200), 50, 89) { Mass = 200 });
+            MoveableObjects = new ObservableCollection<IMoveableObject>
+                {
+                    new Meteoroid(new Vector(800, 200), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 500 },
+                    new Meteoroid(new Vector(600, 210), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 500 },
+                    new Meteoroid(new Vector(500, 310), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 800 },
+                    new Meteoroid(new Vector(500, 250), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 600 },
+                    new Meteoroid(new Vector(400, 160), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 800 },
+                    new Meteoroid(new Vector(700, 150), 50, 75, VectorUtils.GetVector(0.8, Math.PI), 1) { Mass = 400 },
+                    new Rocket(new Vector(200, 200), 50, 89) { Mass = 200, FuelTank = new FuelTank(1000) }
+                };
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
-            Rocket.FuelTankSize = 5000;
-            Rocket.RemainingFuel = 5000;
 
             KeyboardListener.Subscribers.Add(Key.W, Rocket.IncreaseThrust);
             KeyboardListener.Subscribers.Add(Key.A, Rocket.RotateLeft);
@@ -44,9 +44,7 @@ namespace TheNewEra
 
         public Universe()
         {
-            Rocket = new Rocket(new Vector(200, 200), 50, 89);
-            Rocket.FuelTankSize = 500;
-            Rocket.RemainingFuel = 500;
+            Rocket = new Rocket(new Vector(200, 200), 50, 89) { FuelTank = new FuelTank(1000) };
         }
 
         public ObservableCollection<IMoveableObject> MoveableObjects { get; set; }

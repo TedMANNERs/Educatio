@@ -6,7 +6,6 @@ namespace TheNewEra
     {
         private int _imageId = 1;
         private double _positionAngle;
-        private int _remainingFuel;
 
         public Rocket(Vector position, int height, int width)
         {
@@ -17,17 +16,7 @@ namespace TheNewEra
             Init();
         }
 
-        public static int FuelTankSize { get; set; }
-
-        public int RemainingFuel
-        {
-            get { return _remainingFuel; }
-            set
-            {
-                _remainingFuel = value;
-                OnPropertyChanged();
-            }
-        }
+        public IFuelTank FuelTank { get; set; }
 
         public double PositionAngle
         {
@@ -42,7 +31,7 @@ namespace TheNewEra
         public override void Update()
         {
             base.Update();
-            if (RemainingFuel <= 0 || ThrustMovement.Length <= 0)
+            if (FuelTank.RemainingFuel <= 0 || ThrustMovement.Length <= 0)
             {
                 Sprite = "Resources/Images/rocket3.png";
             }
@@ -54,7 +43,7 @@ namespace TheNewEra
                 }
                 Sprite = "Resources/Images/rocket" + _imageId + ".png";
                 _imageId++;
-                RemainingFuel--;
+                FuelTank.RemainingFuel--;
             }
 
             Vector navigatorCenter = new Vector(50, 50);
@@ -65,7 +54,7 @@ namespace TheNewEra
 
         public void IncreaseThrust()
         {
-            if (RemainingFuel > 0 && Thrust < 20)
+            if (FuelTank.RemainingFuel > 0 && Thrust < 0.5)
             {
                 Thrust += 0.01;
             }
@@ -73,16 +62,16 @@ namespace TheNewEra
 
         public void RotateLeft()
         {
-            if (RemainingFuel > 0)
+            if (FuelTank.RemainingFuel > 0)
             {
                 RotationSpeed -= AngleUtils.ConvertToRadians(0.2);
-                RemainingFuel--;
+                FuelTank.RemainingFuel--;
             }
         }
 
         public void DecreaseThrust()
         {
-            if (Thrust > 0)
+            if (Thrust > 0.5)
             {
                 Thrust -= 0.5;
             }
@@ -94,10 +83,10 @@ namespace TheNewEra
 
         public void RotateRight()
         {
-            if (RemainingFuel > 0)
+            if (FuelTank.RemainingFuel > 0)
             {
                 RotationSpeed += AngleUtils.ConvertToRadians(0.2);
-                RemainingFuel--;
+                FuelTank.RemainingFuel--;
             }
         }
 
@@ -105,7 +94,7 @@ namespace TheNewEra
         {
             Thrust = 0;
             Velocity = new Vector();
-            RemainingFuel = FuelTankSize;
+            FuelTank.RemainingFuel = FuelTank.Size;
             ViewDirectionAngle = 0;
             RotationSpeed = 0;
             Position = new Vector(200, 200);

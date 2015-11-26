@@ -11,7 +11,6 @@
         <local:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <local:FuelConverter x:Key="FuelConverter"/>
         <local:ScaleConverter x:Key="ScaleConverter" />
         <local:AngleConverter x:Key="AngleConverter" />
     </Window.Resources>
@@ -59,10 +58,9 @@
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
 
-        <Rectangle Height="5" Fill="Red" Width="{Binding Universe.Rocket.FuelTankSize, Converter={StaticResource FuelConverter}}"
-                   Canvas.Left="{Binding Universe.Rocket.TranslatedPosition.X}" Canvas.Bottom="{Binding Universe.Rocket.TranslatedPosition.Y}" Margin="-20,-20,0,0"/>
-        <Rectangle Height="5" Fill="Green" Width="{Binding Universe.Rocket.RemainingFuel, Converter={StaticResource FuelConverter}}"
-                   Canvas.Left="{Binding Universe.Rocket.TranslatedPosition.X}" Canvas.Bottom="{Binding Universe.Rocket.TranslatedPosition.Y}" Margin="-20,-20,0,0"/>
+        <local:FuelGauge Rocket="{Binding Universe.Rocket}" Margin="-20,-20,0,0"
+                         Canvas.Bottom="{Binding Universe.Rocket.TranslatedPosition.Y}"
+                         Canvas.Left="{Binding Universe.Rocket.TranslatedPosition.X}"/>
 
         <local:Navigator Rocket="{Binding Universe.Rocket}" Canvas.Bottom="0"/>
 
@@ -70,7 +68,7 @@
         <Label Content="{Binding Universe.Rocket.Position.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>
         <Label Content="{Binding Universe.Rocket.ViewDirectionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="ViewAngle {0}" Foreground="White" Canvas.Top="40"/>
         <Label Content="{Binding Universe.Rocket.FlightDirectionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="FlightAngle {0}" Foreground="White" Canvas.Top="60"/>
-        <Label Content="{Binding Universe.Rocket.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>
+        <Label Content="{Binding Universe.Rocket.FuelTank.RemainingFuel}" ContentStringFormat="RemainingFuel {0}" Foreground="White" Canvas.Top="80"/>
         <Label Content="{Binding Universe.Rocket.ThrustMovement.Length}" ContentStringFormat="ThrustMovement {0}" Foreground="White" Canvas.Top="100"/>
         <Label Content="{Binding Universe.Rocket.Thrust}" ContentStringFormat="Thrust {0}" Foreground="White" Canvas.Top="120"/>
         <Label Content="{Binding Universe.Rocket.PositionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="PositionAngle {0}" Foreground="White" Canvas.Top="140"/>

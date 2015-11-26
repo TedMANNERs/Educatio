@@ -59,6 +59,11 @@
     <Compile Include="AngleConverter.cs" />
     <Compile Include="AngleUtils.cs" />
     <Compile Include="DelegateCommand.cs" />
+    <Compile Include="FuelGauge.xaml.cs">
+      <DependentUpon>FuelGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FuelTank.cs" />
+    <Compile Include="IFuelTank.cs" />
     <Compile Include="IKeyboardListener.cs" />
     <Compile Include="IMainViewModel.cs" />
     <Compile Include="IMoveableObject.cs" />
@@ -74,9 +79,12 @@
     <Compile Include="PhysicsEngine.cs" />
     <Compile Include="Rocket.cs" />
     <Compile Include="Universe.cs" />
-    <Compile Include="FuelConverter.cs" />
     <Compile Include="ScaleConverter.cs" />
     <Compile Include="VectorUtils.cs" />
+    <Page Include="FuelGauge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using TheNewEra.Objects;
+using TheNewEra.Util;
 
-namespace TheNewEra
+namespace TheNewEra.Physics
 {
     public class PhysicsEngine : IPhysicsEngine
     {

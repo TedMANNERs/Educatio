@@ -2,9 +2,11 @@
 using System.Windows;
 using FluentAssertions;
 using NUnit.Framework;
-using TheNewEra;
+using TheNewEra.Objects;
+using TheNewEra.Objects.Rocket;
+using TheNewEra.Util;
 
-namespace TheNewEraTest
+namespace TheNewEraTest.Util
 {
     [TestFixture]
     public class VectorUtilsTest

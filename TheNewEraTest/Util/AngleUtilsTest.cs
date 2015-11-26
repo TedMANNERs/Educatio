@@ -1,9 +1,9 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
-using TheNewEra;
+using TheNewEra.Util;
 
-namespace TheNewEraTest
+namespace TheNewEraTest.Util
 {
     [TestFixture]
     public class AngleUtilsTest

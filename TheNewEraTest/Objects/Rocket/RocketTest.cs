@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using FluentAssertions;
 using NUnit.Framework;
-using TheNewEra;
+using TheNewEra.Objects.Rocket;
 
-namespace TheNewEraTest
+namespace TheNewEraTest.Objects.Rocket
 {
     [TestFixture]
     public class RocketTest
@@ -11,10 +11,10 @@ namespace TheNewEraTest
         [SetUp]
         public void SetUp()
         {
-            _testee = new Rocket(_position, Height, Width) { FuelTank = new FuelTank(0)};
+            _testee = new TheNewEra.Objects.Rocket.Rocket(_position, Height, Width) { FuelTank = new FuelTank(0)};
         }
 
-        private Rocket _testee;
+        private TheNewEra.Objects.Rocket.Rocket _testee;
         private readonly Vector _position = new Vector(200, 200);
         private const int Height = 50;
         private const int Width = 89;

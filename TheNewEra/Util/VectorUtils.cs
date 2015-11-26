@@ -1,7 +1,8 @@
 using System;
 using System.Windows;
+using TheNewEra.Objects;
 
-namespace TheNewEra
+namespace TheNewEra.Util
 {
     public static class VectorUtils
     {

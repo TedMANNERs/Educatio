@@ -1,6 +1,7 @@
 using System;
+using TheNewEra.Objects;
 
-namespace TheNewEra
+namespace TheNewEra.Util
 {
     public class AngleUtils
     {

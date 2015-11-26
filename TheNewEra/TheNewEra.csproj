@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -57,30 +58,30 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AngleConverter.cs" />
-    <Compile Include="AngleUtils.cs" />
+    <Compile Include="Util\AngleUtils.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="FuelGauge.xaml.cs">
       <DependentUpon>FuelGauge.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FuelTank.cs" />
-    <Compile Include="IFuelTank.cs" />
-    <Compile Include="IKeyboardListener.cs" />
+    <Compile Include="Objects\Rocket\FuelTank.cs" />
+    <Compile Include="Objects\Rocket\IFuelTank.cs" />
+    <Compile Include="KeyboardListener\IKeyboardListener.cs" />
     <Compile Include="IMainViewModel.cs" />
-    <Compile Include="IMoveableObject.cs" />
-    <Compile Include="IPhysicsEngine.cs" />
+    <Compile Include="Objects\IMoveableObject.cs" />
+    <Compile Include="Physics\IPhysicsEngine.cs" />
     <Compile Include="IUniverse.cs" />
-    <Compile Include="KeyboardListener.cs" />
+    <Compile Include="KeyboardListener\KeyboardListener.cs" />
     <Compile Include="MainViewModelDesignData.cs" />
-    <Compile Include="Meteoroid.cs" />
-    <Compile Include="MoveableObjectBase.cs" />
+    <Compile Include="Objects\Meteoroid.cs" />
+    <Compile Include="Objects\MoveableObjectBase.cs" />
     <Compile Include="Navigator.xaml.cs">
       <DependentUpon>Navigator.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PhysicsEngine.cs" />
-    <Compile Include="Rocket.cs" />
+    <Compile Include="Physics\PhysicsEngine.cs" />
+    <Compile Include="Objects\Rocket\Rocket.cs" />
     <Compile Include="Universe.cs" />
     <Compile Include="ScaleConverter.cs" />
-    <Compile Include="VectorUtils.cs" />
+    <Compile Include="Util\VectorUtils.cs" />
     <Page Include="FuelGauge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,9 +153,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\logo.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="logo.ico" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

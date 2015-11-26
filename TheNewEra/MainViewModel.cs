@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using TheNewEra.Physics;
 
 namespace TheNewEra
 {
@@ -6,7 +7,7 @@ namespace TheNewEra
     {
         public MainViewModel()
         {
-            Universe = new Universe(new KeyboardListener(), new PhysicsEngine());
+            Universe = new Universe(new KeyboardListener.KeyboardListener(), new PhysicsEngine());
         }
 
         public Universe Universe { get; set; }

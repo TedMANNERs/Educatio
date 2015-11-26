@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace TheNewEra
+namespace TheNewEra.Objects.Rocket
 {
     public class FuelTank : IFuelTank, INotifyPropertyChanged
     {

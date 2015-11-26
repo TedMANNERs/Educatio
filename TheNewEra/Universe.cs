@@ -5,6 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TheNewEra.Objects;
+using TheNewEra.Objects.Rocket;
+using TheNewEra.Physics;
+using TheNewEra.Util;
 
 namespace TheNewEra
 {
@@ -12,7 +16,7 @@ namespace TheNewEra
     {
         private bool _isRunning = true;
 
-        public Universe(KeyboardListener keyboardListener, PhysicsEngine physicsEngine)
+        public Universe(KeyboardListener.KeyboardListener keyboardListener, PhysicsEngine physicsEngine)
         {
             KeyboardListener = keyboardListener;
             PhysicsEngine = physicsEngine;
@@ -49,7 +53,7 @@ namespace TheNewEra
 
         public ObservableCollection<IMoveableObject> MoveableObjects { get; set; }
         public Rocket Rocket { get; set; }
-        public KeyboardListener KeyboardListener { get; private set; }
+        public KeyboardListener.KeyboardListener KeyboardListener { get; private set; }
         public IPhysicsEngine PhysicsEngine { get; set; }
 
         public void Stop()

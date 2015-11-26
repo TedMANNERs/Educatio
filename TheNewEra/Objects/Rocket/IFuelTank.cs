@@ -1,4 +1,4 @@
-namespace TheNewEra
+namespace TheNewEra.Objects.Rocket
 {
     public interface IFuelTank
     {

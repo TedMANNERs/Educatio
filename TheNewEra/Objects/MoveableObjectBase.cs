@@ -2,8 +2,9 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
+using TheNewEra.Util;
 
-namespace TheNewEra
+namespace TheNewEra.Objects
 {
     public abstract class MoveableObjectBase : IMoveableObject, INotifyPropertyChanged
     {

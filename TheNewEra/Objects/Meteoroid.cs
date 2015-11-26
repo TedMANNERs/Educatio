@@ -1,6 +1,7 @@
 ﻿using System.Windows;
+using TheNewEra.Util;
 
-namespace TheNewEra
+namespace TheNewEra.Objects
 {
     public class Meteoroid : MoveableObjectBase
     {

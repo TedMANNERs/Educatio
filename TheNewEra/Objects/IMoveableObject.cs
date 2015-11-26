@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TheNewEra
+namespace TheNewEra.Objects
 {
     public interface IMoveableObject
     {

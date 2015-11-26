@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TheNewEra.AngleConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AngleConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TheNewEra.App" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheNewEra.DelegateCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAEAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>DelegateCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TheNewEra.FuelGauge" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FuelGauge.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rocket" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TheNewEra.MainView" Collapsed="true">
+    <Position X="15.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheNewEra.MainViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Universe" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TheNewEra.MainViewModelDesignData" Collapsed="true">
+    <Position X="3.25" Y="6" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainViewModelDesignData.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Universe" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TheNewEra.Navigator" Collapsed="true">
+    <Position X="6.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Navigator.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Rocket" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TheNewEra.ScaleConverter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ScaleConverter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.137" Collapsed="true" />
+  </Class>
+  <Class Name="TheNewEra.Universe" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEEAAAIIAAAAAAEAAIAAAIAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Universe.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PhysicsEngine" />
+      <Property Name="Rocket" />
+      <Property Name="KeyboardListener" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MoveableObjects" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheNewEra.KeyboardListener.KeyboardListener" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAEAAAIAABAAAAAAAAAAAIAAAAQAAAAA=</HashCode>
+      <FileName>KeyboardListener\KeyboardListener.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheNewEra.Objects.Meteoroid" Collapsed="true">
+    <Position X="8.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Meteoroid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheNewEra.Objects.MoveableObjectBase" Collapsed="true">
+    <Position X="7.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABDQIAAAEgIAAAAEABgAIABBARRAECgACEQIA=</HashCode>
+      <FileName>Objects\MoveableObjectBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TheNewEra.Objects.Rocket.FuelTank" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAIAIAAAAAAAgAAAAAAAEAACAAAABAA=</HashCode>
+      <FileName>Objects\Rocket\FuelTank.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TheNewEra.Objects.Rocket.Rocket" Collapsed="true">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAACgAAAAIAAAhAIAAAAAAAAAAAAAQAAAAoAA=</HashCode>
+      <FileName>Objects\Rocket\Rocket.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="FuelTank" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TheNewEra.Physics.PhysicsEngine" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Physics\PhysicsEngine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TheNewEra.Util.AngleUtils" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAQAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Util\AngleUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TheNewEra.Util.VectorUtils" Collapsed="true">
+    <Position X="15.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Util\VectorUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TheNewEra.IMainViewModel" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>IMainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheNewEra.IUniverse" Collapsed="true">
+    <Position X="15.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAIAAAAAAAEAAAAAAIAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>IUniverse.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheNewEra.KeyboardListener.IKeyboardListener" Collapsed="true">
+    <Position X="12" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAIAAAAQAAAAA=</HashCode>
+      <FileName>KeyboardListener\IKeyboardListener.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheNewEra.Objects.IMoveableObject" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABBQAAAAAgAAAAAEAAAAAABBAQRAAAAACEQIA=</HashCode>
+      <FileName>Objects\IMoveableObject.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheNewEra.Objects.Rocket.IFuelTank" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAACAAAABAA=</HashCode>
+      <FileName>Objects\Rocket\IFuelTank.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TheNewEra.Physics.IPhysicsEngine" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Physics\IPhysicsEngine.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -16,7 +16,7 @@ namespace TheNewEra
     {
         private bool _isRunning = true;
 
-        public Universe(KeyboardListener.KeyboardListener keyboardListener, PhysicsEngine physicsEngine)
+        public Universe(KeyboardListener.KeyboardListener keyboardListener, IPhysicsEngine physicsEngine)
         {
             KeyboardListener = keyboardListener;
             PhysicsEngine = physicsEngine;

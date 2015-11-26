@@ -68,6 +68,9 @@
     <Compile Include="MainViewModelDesignData.cs" />
     <Compile Include="Meteoroid.cs" />
     <Compile Include="MoveableObjectBase.cs" />
+    <Compile Include="Navigator.xaml.cs">
+      <DependentUpon>Navigator.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PhysicsEngine.cs" />
     <Compile Include="Rocket.cs" />
     <Compile Include="Universe.cs" />
@@ -86,6 +89,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Navigator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainViewModel.cs" />

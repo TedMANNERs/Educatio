@@ -64,32 +64,7 @@
         <Rectangle Height="5" Fill="Green" Width="{Binding Universe.Rocket.RemainingFuel, Converter={StaticResource FuelConverter}}"
                    Canvas.Left="{Binding Universe.Rocket.TranslatedPosition.X}" Canvas.Bottom="{Binding Universe.Rocket.TranslatedPosition.Y}" Margin="-20,-20,0,0"/>
 
-        <Rectangle Height="100" Width="1" Fill="LightGray" Canvas.Bottom="0" Canvas.Left="50" />
-        <Rectangle Height="1" Width="100" Fill="LightGray" Canvas.Bottom="50" />
-        <Rectangle Height="2" Fill="Red" Width="{Binding Universe.Rocket.Velocity.Length, Converter={StaticResource ScaleConverter}}" 
-                   Canvas.Bottom="50" Canvas.Left="50">
-            <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.FlightDirectionAngle, Converter={StaticResource AngleConverter}}"/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Rectangle Height="2" Fill=" Yellow" Width="{Binding Universe.Rocket.ThrustMovement.Length, Converter={StaticResource ScaleConverter}}"
-                   Canvas.Bottom="50" Canvas.Left="50">
-            <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle, Converter={StaticResource AngleConverter}}"/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Rectangle Height="1" Fill="White" Width="50"
-                   Canvas.Bottom="50" Canvas.Left="50">
-            <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.ViewDirectionAngle, Converter={StaticResource AngleConverter}}"/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Rectangle Height="1" Fill="Orange" Width="50"
-                   Canvas.Bottom="50" Canvas.Left="50">
-            <Rectangle.RenderTransform>
-                <RotateTransform Angle="{Binding Universe.Rocket.PositionAngle, Converter={StaticResource AngleConverter}}"/>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        <local:Navigator Rocket="{Binding Universe.Rocket}" Canvas.Bottom="0"/>
 
         <Label Content="{Binding Universe.Rocket.Position.X}" ContentStringFormat="X {0}" Foreground="White"/>
         <Label Content="{Binding Universe.Rocket.Position.Y}" ContentStringFormat="Y {0}" Foreground="White" Canvas.Top="20"/>

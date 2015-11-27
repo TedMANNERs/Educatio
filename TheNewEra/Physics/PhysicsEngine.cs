@@ -10,6 +10,9 @@ namespace TheNewEra.Physics
 {
     public class PhysicsEngine : IPhysicsEngine
     {
+        //In reality G would be approximately 0.000000000066742;
+        public const double G = 0.00000000066742;
+
         public void ApplyForces(ObservableCollection<IMoveableObject> moveableObjects)
         {
             foreach (IMoveableObject moveableObject in moveableObjects)
@@ -20,7 +23,12 @@ namespace TheNewEra.Physics
                 Vector xAxis = VectorUtils.GetVector(1, 0);
                 moveableObject.FlightDirectionAngle = 2 * Math.PI - AngleUtils.ConvertToRadians(Vector.AngleBetween(moveableObject.Velocity, xAxis));
 
-                moveableObject.Velocity = Vector.Add(moveableObject.Velocity, moveableObject.ThrustMovement);
+                moveableObject.Velocity += moveableObject.ThrustMovement;
+
+                if (moveableObject is Planet)
+                    continue;
+                Vector gravitationalPull = GetResultingVelocityFromGravity(moveableObject, moveableObjects);
+                moveableObject.Velocity += gravitationalPull;
             }
         }
 
@@ -53,6 +61,19 @@ namespace TheNewEra.Physics
             }
         }
 
+        private Vector GetResultingVelocityFromGravity(IMoveableObject objectA, IEnumerable<IMoveableObject> moveableObjects)
+        {
+            Vector gravity = new Vector();
+            foreach (IMoveableObject objectB in moveableObjects.Where(objectB => objectB != objectA))
+            {
+                double distance = VectorUtils.GetDistance(objectA, objectB);
+                double angle = (2 * Math.PI) - AngleUtils.ConvertToRadians(Vector.AngleBetween(new Vector(1, 0), objectB.Position - objectA.Position));
+                double magnitude = (G * objectA.Mass * objectB.Mass) / (distance * distance);
+                gravity += VectorUtils.GetVector(magnitude, angle);
+            }
+            return gravity;
+        }
+
         private Vector GetResultingVelocityFromCollision(IMoveableObject objectA, IMoveableObject objectB)
         {
             double mass = (2 * objectB.Mass) / (objectA.Mass + objectB.Mass);
@@ -63,6 +84,5 @@ namespace TheNewEra.Physics
             Vector result = objectA.Velocity - productTerm2;
             return result;
         }
-
     }
 }

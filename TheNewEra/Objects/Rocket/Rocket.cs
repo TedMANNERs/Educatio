@@ -94,7 +94,7 @@ namespace TheNewEra.Objects.Rocket
         public void PressedR()
         {
             Thrust = 0;
-            Velocity = new Vector();
+            Velocity = new Vector(0, 15);
             FuelTank.RemainingFuel = FuelTank.Size;
             ViewDirectionAngle = 0;
             RotationSpeed = 0;

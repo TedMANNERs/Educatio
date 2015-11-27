@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AngleConverter.cs" />
+    <Compile Include="Objects\Planet.cs" />
     <Compile Include="Util\AngleUtils.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="FuelGauge.xaml.cs">
@@ -154,7 +155,9 @@
   <ItemGroup>
     <Resource Include="Resources\Images\logo.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\Planet1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

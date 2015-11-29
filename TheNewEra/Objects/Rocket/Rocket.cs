@@ -48,8 +48,8 @@ namespace TheNewEra.Objects.Rocket
             }
 
             Vector navigatorCenter = new Vector(50, 50);
-            Vector rocketPosition = Vector.Subtract(new Vector(Position.X, Position.Y), navigatorCenter);
-            Vector navigatorXAxis = Vector.Subtract(new Vector(100, 50), navigatorCenter);
+            Vector rocketPosition = new Vector(Position.X, Position.Y) - navigatorCenter;
+            Vector navigatorXAxis = new Vector(100, 50) - navigatorCenter;
             PositionAngle = AngleUtils.ConvertToRadians(Vector.AngleBetween(rocketPosition, navigatorXAxis));
         }
 

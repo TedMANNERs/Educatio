@@ -23,11 +23,14 @@ namespace TheNewEra
 
             MoveableObjects = new ObservableCollection<IMoveableObject>
                 {
-                    new Meteoroid(new Vector(1400, 0), 15, 25, new Vector(0, -18), 1) { Mass = 100 },
-                    new Meteoroid(new Vector(1300, 0), 15, 25, new Vector(0, -13), 1) { Mass = 50 },
-                    new Meteoroid(new Vector(600, 0), 15, 25, new Vector(0, 9), 1) { Mass = 30 },
-                    new Planet(new Vector(1000, 0), 200, 200) { Mass = 2000000000000 },
-                    new Rocket(new Vector(500, 0), 30, 55) { Mass = 100, FuelTank = new FuelTank(2000), Velocity = new Vector(0, 15)}
+                    new Meteoroid(new Vector(1400, 500), 15, 25, new Vector(0, -18), 1) { Mass = 100 },
+                    new Meteoroid(new Vector(1500, 500), 15, 25, new Vector(0, -18), 1) { Mass = 100 },
+                    new Meteoroid(new Vector(1350, 500), 15, 25, new Vector(0, -18), 1) { Mass = 100 },
+                    new Meteoroid(new Vector(1300, 500), 15, 25, new Vector(0, -13), 1) { Mass = 50 },
+                    new Meteoroid(new Vector(1000, 1000), 15, 25, new Vector(-10, 0), 1) { Mass = 50 },
+                    new Meteoroid(new Vector(600, 500), 15, 25, new Vector(0, 9), 1) { Mass = 30 },
+                    new Planet(new Vector(1000, 500), 200, 200) { Mass = 2000000000000 },
+                    new Rocket(new Vector(500, 500), 30, 55) { Mass = 100, FuelTank = new FuelTank(2000), Velocity = new Vector(0, 15)}
                 };
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();

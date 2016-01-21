@@ -32,7 +32,8 @@
         <ItemsControl ItemsSource="{Binding Universe.MoveableObjects}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas Height="{Binding ElementName=MainWindow, Path=Height}" Width="{Binding ElementName=MainWindow, Path=Width}"/>
+                    <Canvas Height="{Binding Path=ActualHeight, RelativeSource={RelativeSource  AncestorType=Window}}" 
+                            Width="{Binding Path=ActualWidth, RelativeSource={RelativeSource  AncestorType=Window}}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>

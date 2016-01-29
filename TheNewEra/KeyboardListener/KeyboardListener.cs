@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Input;
@@ -14,10 +13,10 @@ namespace TheNewEra.KeyboardListener
         {
             _keyboardThread = new Thread(Listen);
             _keyboardThread.SetApartmentState(ApartmentState.STA);
-            Subscribers = new Dictionary<Key, Action>();
+            Subscribers = new List<Input>();
         }
 
-        public Dictionary<Key, Action> Subscribers { get; private set; }
+        public IList<Input> Subscribers { get; }
 
         public void Start()
         {
@@ -34,11 +33,16 @@ namespace TheNewEra.KeyboardListener
         {
             while (_isRunning)
             {
-                foreach (KeyValuePair<Key, Action> subscriber in Subscribers)
+                foreach (Input subscriber in Subscribers)
                 {
                     if (Keyboard.IsKeyDown(subscriber.Key))
                     {
-                        subscriber.Value.BeginInvoke(null, null);
+                        subscriber.IsDown = true;
+                        subscriber.Action.BeginInvoke(null, null);
+                    }
+                    if (Keyboard.IsKeyUp(subscriber.Key) && subscriber.IsDown)
+                    {
+                        subscriber.IsDown = false;
                     }
                 }
 

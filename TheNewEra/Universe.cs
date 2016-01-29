@@ -1,14 +1,13 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TheNewEra.KeyboardListener;
 using TheNewEra.Objects;
 using TheNewEra.Objects.Rocket;
 using TheNewEra.Physics;
-using TheNewEra.Util;
 
 namespace TheNewEra
 {
@@ -16,7 +15,7 @@ namespace TheNewEra
     {
         private bool _isRunning = true;
 
-        public Universe(KeyboardListener.KeyboardListener keyboardListener, IPhysicsEngine physicsEngine)
+        public Universe(IKeyboardListener keyboardListener, IPhysicsEngine physicsEngine)
         {
             KeyboardListener = keyboardListener;
             PhysicsEngine = physicsEngine;
@@ -30,17 +29,17 @@ namespace TheNewEra
                     new Meteoroid(new Vector(1000, 1000), 15, 25, new Vector(-10, 0), 1) { Mass = 50 },
                     new Meteoroid(new Vector(600, 500), 15, 25, new Vector(0, 9), 1) { Mass = 30 },
                     new Planet(new Vector(1000, 500), 200, 200) { Mass = 2000000000000 },
-                    new Rocket(new Vector(500, 500), 30, 55) { Mass = 100, FuelTank = new FuelTank(2000), Velocity = new Vector(0, 15)}
+                    new Rocket(new Vector(500, 500), 30, 55) { Mass = 100, FuelTank = new FuelTank(2000), Velocity = new Vector(0, 15) }
                 };
 
             Rocket = MoveableObjects.OfType<Rocket>().Single();
 
-            KeyboardListener.Subscribers.Add(Key.W, Rocket.IncreaseThrust);
-            KeyboardListener.Subscribers.Add(Key.A, Rocket.RotateLeft);
-            KeyboardListener.Subscribers.Add(Key.S, Rocket.DecreaseThrust);
-            KeyboardListener.Subscribers.Add(Key.D, Rocket.RotateRight);
-            KeyboardListener.Subscribers.Add(Key.R, Rocket.PressedR);
-            KeyboardListener.Subscribers.Add(Key.T, Rocket.PressedT);
+            KeyboardListener.Subscribers.Add(new Input(Key.W, Rocket.IncreaseThrust));
+            KeyboardListener.Subscribers.Add(new Input(Key.A, Rocket.RotateLeft));
+            KeyboardListener.Subscribers.Add(new Input(Key.S, Rocket.DecreaseThrust));
+            KeyboardListener.Subscribers.Add(new Input(Key.D, Rocket.RotateRight));
+            KeyboardListener.Subscribers.Add(new Input(Key.R, Rocket.PressedR));
+            KeyboardListener.Subscribers.Add(new Input(Key.T, Rocket.PressedT));
             KeyboardListener.Start();
 
             Task task = new Task(Loop);
@@ -54,7 +53,7 @@ namespace TheNewEra
 
         public ObservableCollection<IMoveableObject> MoveableObjects { get; set; }
         public Rocket Rocket { get; set; }
-        public KeyboardListener.KeyboardListener KeyboardListener { get; private set; }
+        public IKeyboardListener KeyboardListener { get; private set; }
         public IPhysicsEngine PhysicsEngine { get; set; }
 
         public void Stop()

@@ -73,5 +73,31 @@
         <Label Content="{Binding Universe.Rocket.ThrustMovement.Length}" ContentStringFormat="ThrustMovement {0}" Foreground="White" Canvas.Top="100"/>
         <Label Content="{Binding Universe.Rocket.Thrust}" ContentStringFormat="Thrust {0}" Foreground="White" Canvas.Top="120"/>
         <Label Content="{Binding Universe.Rocket.PositionAngle, Converter={StaticResource AngleConverter}}" ContentStringFormat="PositionAngle {0}" Foreground="White" Canvas.Top="140"/>
+
+        <ItemsControl ItemsSource="{Binding Universe.KeyboardListener.Subscribers}" Canvas.Right="20" Height="Auto" Width="Auto" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Key}" FontSize="16" Height="40" Width="40" Margin="5" BorderBrush="DarkGray" BorderThickness="1">
+                        <Label.Style>
+                            <Style TargetType="{x:Type Label}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDown}" Value="True">
+                                        <Setter Property="Background" Value="Gray"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsDown}" Value="False">
+                                        <Setter Property="Background" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Canvas>
 </Window>

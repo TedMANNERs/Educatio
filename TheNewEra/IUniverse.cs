@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using TheNewEra.KeyboardListener;
 using TheNewEra.Objects;
 using TheNewEra.Objects.Rocket;
 using TheNewEra.Physics;
@@ -9,7 +10,7 @@ namespace TheNewEra
     {
         ObservableCollection<IMoveableObject> MoveableObjects { get; set; }
         Rocket Rocket { get; set; }
-        KeyboardListener.KeyboardListener KeyboardListener { get; }
+        IKeyboardListener KeyboardListener { get; }
         IPhysicsEngine PhysicsEngine { get; set; }
 
         void Stop();

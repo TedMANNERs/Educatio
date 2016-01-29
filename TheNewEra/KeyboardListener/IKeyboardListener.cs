@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 
 namespace TheNewEra.KeyboardListener
 {
     public interface IKeyboardListener
     {
-        Dictionary<Key, Action> Subscribers { get; }
+        IList<Input> Subscribers { get; }
 
         void Start();
 
